@@ -3,15 +3,26 @@ import { Footprints, Dumbbell, Moon, ChevronLeft, ChevronRight, Flag, Target, Al
 
 /* ============================================================
    tomak 專屬 Sub-3 課表　2026-10-19(一) 起 · 12週 · 賽 2027-01-10(日)
-   45歲 / 169cm / 65kg(賽前目標 62kg) / 最大心率 178 / 靜止 42-44 / 全馬PB 3:08:05(2024台北馬)
+   45歲 / 169cm / 65kg 體脂15-18%(賽前目標 62.5-63kg) / 最大心率 178 / 靜止 42-44 / 全馬PB 3:08:05(2024台北馬)
 
    ── 建檔依據(全部來自實測) ──
    [2024台北馬] 3:08:05。前半1:33:58 後半1:34:07,正負差9秒;脫鉤+4.1%;
      平均心率150(84%max)、最高166、終點157。35km後配速4:23→4:33 而心率不升甚至微降
      → 不是心肺到頂,是肌肉/肝醣見底。這決定了整份課表的重心。
-   [VDOT落差] Garmin預測 5K 54.7 / 10K 52.0 / 半馬 51.2 / 全馬 48.2,落差6.5點
+   [VDOT] 2026-10-21 更正:原本採信 Garmin 預測的 5K 54.7,推論「速度有餘、耐力不足」。
+          但 10/14 實測 16x400m @3:47/km(45秒恢復,末兩趟 HR 170-172 = 96-97%max)
+          對應 VDOT 50-52,與全馬 3:08:05 推出的 50.8 一致 ——
+          他是【各距離平衡的 VDOT 51 跑者】,不存在 6.5 點落差。Garmin 的短距離預測在此失真。
+          sub-3 需要 VDOT 53.7 → 需要整個系統 +2.7 點,不是縮小落差。
+          所以 W2/W6 保留 I 課(天花板也要推),W7 後全部轉 M 專項。
+   [脫鉤實測] 10/11 長跑30km/2h44 脫鉤 +0.1%(EF全程 0.0226-0.0229,是漸速跑:6:10→4:46)
+          10/18 14km +1.7% / 2024比賽 +4.0% —— 有氧耐久性本身很好,
+          2024 的 35km 崩盤是補給與肌肉損傷,不是耐力結構問題(末20%心率最高、EF最低)。
+   [未知] 10/18 心率145-152跑4:50,2024比賽同心率帶跑4:26,差24秒/km——
+          但 24-26°C vs 11°C,溫度一項就足以解釋,故【尚無法判斷是否比2024強】。
+          第一次乾淨讀數 = W5 實測,或任何低溫清晨的 M 課。
      (正常1-2點)。速度端夠用,馬拉松專項耐力是缺口 → 刻意減少 I/R,量押在 T 與 M。
-   [跑量] 月實測 5月14.8 → 9月40.9 → 10月51.0 km/週。12週能安全到的峰值約72km跑步
+   [跑量] 本人回報近4週實際 55-60km/週(月統計的51是低估)。12週峰值 90km,W1 從 63 起
      + 每週1-2次Z2騎車。Sub-3常見週量80-110km,這是最大的結構限制。
    [睡眠] 8/24-9/20 平均6:33(需求8:24) / 9/21-10/18 平均6:20(需求8:23),56天只有1天達標。
      同期HRV 50→41轉不平衡、負荷比1.0最佳 → 負荷合理,恢復不足。本人已決定調整睡眠。
@@ -88,23 +99,34 @@ const WEEK_TEMP = {1:23,2:22,3:22,4:21,5:20,6:19,7:17,8:16,9:16,10:15,11:15,12:1
 const primaryBy = (w) => w<=5 ? "hr" : (w<=9 ? "both" : "pace");
 
 const VDOT_BY_WEEK = {1:51,2:51,3:51.5,4:51.5,5:51.5,6:52,7:52.5,8:52.5,9:53,10:53,11:53.5,12:53.5};
-/* 2026-10-20 上修:原峰值 72km 用的是每漸進週 +5.5%(很保守),
-   標準上限是 +8-10%。本人表示會把睡眠處理好、目標釘在比賽日巔峰,
-   故改用 +7%/漸進週 → 峰值 80km。
-   關鍵:多出來的 8km 全部放進「輕鬆跑」,不是加 Q 課 ——
-   輕鬆量佔比因此從 65% 升到 68%,長跑佔比從 42% 降到 40%。
-   低跑量跑者缺的本來就是圍繞長跑的那些輕鬆里程,不是更多高強度。 */
-const RUN_KM   = {1:50,2:55,3:61,4:53,5:66,6:72,7:77,8:64,9:85,10:62,11:48,12:26};
+/* 2026-10-21 重排(K1):兩個修正一起進來 ——
+   ① 基準跑量更正:原本用月統計推出的 51km/週是低估,實際是 55-60km/週。
+      起點錯了會讓整份課表劑量不足,所以整條曲線上移,W1 從 50 → 63km。
+   ② 輕鬆日改「時間 + 心率」處方,不再規定公里數。
+      理由:有氧適應的劑量單位是時間不是距離;而且時間制會自動調節 ——
+      累的那天自然跑慢,分鐘數照跑、里程自己縮,週負荷自動下降。
+      原本 W1-W5 排 20-25 分鐘的輕鬆日是無效劑量(30分以下對粒線體
+      幾乎沒貢獻,只有恢復價值),填到 45 分之後峰值 CTL 43.0 → 50.1。
+   加的量全部是 E 配速,Q 課/長跑/M 配速總量一公里都沒動,
+   所以高強度佔比反而從 26-34% 降到 21-29%。
+   驗證:最大單週增幅 +10%、減量 -43%、賽日 CTL 43.6(87%保留)、
+        TSB +13.7、Garmin負荷比 0.66 —— 三項巔峰指標全部窗內。 */
+const EASY_MIN = {1:45,2:45,3:45,4:45,5:50,6:55,7:60,8:55,9:65,10:43,11:26,12:0};
+const RUN_KM   = {1:63,2:68,3:74,4:65,5:81,6:83,7:90,8:79,9:90,10:72,11:51,12:29};
 const WEEK_PHASE = {1:"p1",2:"p1",3:"p2",4:"p2",5:"p2",6:"p3",7:"p3",8:"p3",9:"p4",10:"taper",11:"taper",12:"race"};
 const DELOAD = {4:true, 8:true};
-const PEAK_RUN = 85;
+const PEAK_RUN = 90;
+/* 輕鬆跑心率處方:目標帶 + 漂移上限 + 配速地板。
+   前30分守目標帶是判斷今天狀況的依據;30分後允許心臟漂移,
+   不要為了壓心率一直減速。連配速地板都壓不住漂移上限 = 恢復不足,當天提早結束。 */
+const EASY_HR_LO = 130, EASY_HR_HI = 142, EASY_HR_DRIFT = 148, EASY_PACE_FLOOR = "6:15";
 
 const PHASES = {
   p1:{ label:"基礎期",     color:C.main,   note:"睡眠優先。先把 HRV 接回基線,再談加量" },
   p2:{ label:"強化期一",   color:C.accent, note:"T配速為主軸 — 瓶頸在這裡,不在速度" },
   p3:{ label:"強化期二",   color:C.accent, note:"T + M 混合,長跑帶質量,補給拉到 70g/hr" },
   p4:{ label:"馬拉松專項", color:C.red,    note:"全部繞著 4:15 轉,把目標配速變成本能" },
-  taper:{ label:"減量期",  color:C.green,  note:"量減46%,配速一秒不讓;重訓砍組數不砍重量" },
+  taper:{ label:"減量期",  color:C.green,  note:"量減43%,配速一秒不讓;重訓砍組數不砍重量" },
   race:{ label:"比賽週",   color:C.gold,   note:"1/10 渣打,去把 2:59 拿下來" },
 };
 
@@ -116,7 +138,7 @@ const PHASES = {
         ③ 留住碳板與中底泡棉的壽命(約250-400km,衰退後回彈明顯變差) */
 const SHOE = {
   4:  { use:"週五 Q2(6km @M,共10km)",  km:10, cum:10,  note:"第一次穿。減量週、課最輕,出問題的代價最小 — 前三週先讓腿適應新跑量,不要兩件事一起變" },
-  5:  { use:"週二 10K 全力實測(共15km)", km:15, cum:25,  note:"測驗穿比賽鞋 — 測出來的數字才代表比賽日的你" },
+  5:  { use:"週二 10K 全力實測(共15km)", km:15, cum:25,  note:"測驗穿比賽鞋 — 測出來的數字才代表比賽日的你。判讀見週二那堂的 VDOT 對照" },
   7:  { use:"週五 16km @M(共20km)",   km:20, cum:44,  note:"🎯 決策點那堂。穿比賽鞋跑才有意義,測出來的配速要能代表比賽日" },
   9:  { use:"週日 長跑 32km 全程",      km:32, cum:76,  note:"唯一一次完整演練。前面已累積44km適應才敢做這一堂" },
   11: { use:"週五 Q2(6km @M,共9km)",   km:9,  cum:85,  note:"賽前確認,短而輕" },
@@ -136,13 +158,13 @@ const FUEL = {
 /* 重訓 — 5x5 @96kg 已是 85-88% 1RM,型態正確。只改位置與組數,重量全程不降 */
 /* 實測:背蹲舉 95kg x5(1RM約109,1.67倍體重)、六角槓硬舉 110kg x5(1RM約126,1.94倍)
    兩項都在「認真做肌力的跑者」區間(1.7-2.2倍)。工作重量是1RM的87% — 神經適應區,正確。
-   這個肌力基礎不是破3的加分項,是讓 51→85km(+67%) 這個加量變安全的底氣。
+   這個肌力基礎不是破3的加分項,是讓 58→90km(+57%) 這個加量變安全的底氣。
    跑量峰值期:砍組數與項目數,重量全程不降。六角槓硬舉對跑者價值高於背蹲舉
    (後鏈與髖伸展主導、脊椎壓力低、更接近跑步力學),要留一項就留硬舉。 */
 const STRENGTH = {
   p1:{ t:"背蹲舉 5x5 + 六角槓硬舉 5x5", x:"95kg / 110kg,維持目前重量 + 核心 + 跳箱。週一傍晚做,跟週二晨跑間隔12小時以上" },
   p2:{ t:"背蹲舉 5x5 + 六角槓硬舉 5x5", x:"重量不加 — 馬拉松週期裡追重量PR,等於從跑步那邊偷恢復" },
-  p3:{ t:"單週一項 3x5(蹲/硬舉交替)", x:"跑量到 72-85km,砍組數也砍項目數,重量不變。本週做硬舉,下週做蹲" },
+  p3:{ t:"單週一項 3x5(蹲/硬舉交替)", x:"跑量到 83-90km,砍組數也砍項目數,重量不變。本週做硬舉,下週做蹲" },
   p4:{ t:"單週一項 3x5", x:"同上。45歲的肌腱剛性是 35km 之後的本錢,不能停" },
   taper:{ t:"六角槓硬舉 2x3", x:"只留硬舉,重量仍是 110kg — 降重量會把神經適應丟掉" },
   race:{ t:"跳箱/徒手", x:"或直接跳過" },
@@ -157,24 +179,24 @@ function qOf(wk, P){
     1:{ q1:{t:"Q1·T入門(輕)", x:`熱身2km;2x10分 T @${T} 休3分;緩和2km。本週刻意輕 — 唯一的工作是讓身體接住接下來8週的加量`, v:"2x10分T", km:9},
         q2:{t:"Q2·M起步", x:`熱身2km;6km @${M};緩和2km。第一次踩 Sub-3 的節奏,記住它有多快。${hrCap}`, v:`6km@${M}`, km:10},
         lg:{km:19, x:`全程 E @${E},心率壓在 ${HRZ.E[1]} 以下;最後2km 轉 @${M}。補給從本週就開始練:50 g/hr`} },
-    2:{ q1:{t:"Q1·T巡航", x:`熱身2km;2x12分 T @${T} 休3分;緩和2km`, v:"2x12分T", km:11},
+    2:{ q1:{t:"Q1·I 天花板", x:`熱身2km;5x1000m I @${pstr(P.i)} 休3分(慢跑);緩和2km。心率要進 ${HRZ.I[0]}-${HRZ.I[1]}。休夠才有效 — 休不夠後段配速會垮,那就變成無效的 T 課`, v:"5x1000 I", km:11},
         q2:{t:"Q2·M專項", x:`熱身2km;8km @${M};收尾4x200m ${rep(200,P.r)};緩和1km。${hrCap}`, v:`8km@${M}`, km:12},
         lg:{km:20, x:`E @${E},末4km @${M};心率壓在 ${HRZ.E[1]} 以下`} },
     3:{ q1:{t:"Q1·T鞏固", x:`熱身2km;2x3km T @${T} 休2分;緩和3km`, v:"2x3km T", km:11},
         q2:{t:"Q2·M專項", x:`熱身2km;10km @${M};緩和2km。${hrCap}`, v:`10km@${M}`, km:14},
-        lg:{km:24, x:`E @${E},末5km @${M};出門前1小時吃 30-50g 碳水,跑程 60 g/hr`} },
+        lg:{km:24, x:`📈 漸速:三等分各 8km,配速 ${pstr(P.eHi+15)} → ${pstr(P.eLo)} → ${M}。練的是肝醣一路往下掉時還能把配速推上去。出門前1小時吃 30-50g 碳水,跑程 60 g/hr`} },
     4:{ q1:{t:"Q1·減量T", x:`熱身2km;2x10分 T @${T} 休3分;緩和2km`, v:"2x10分T", km:9},
         q2:{t:"Q2·M專項", x:`熱身2km;7km @${M};緩和2km。${hrCap}`, v:`7km@${M}`, km:11},
         lg:{km:20, x:`E @${E},末6km @${M}。減量週也別浪費 M 額度 — 量少但專項不減`} },
-    5:{ q1:{t:"🔬 10K 實測", x:`熱身3km(含4x100m加速);10km 全力計時,平路、單趟、不要配速員;緩和2km。提前到 W5 做,讓下半期有更多時間用這個結果調整配速`, v:"10K TT", km:15},
+    5:{ q1:{t:"🔬 10K 實測", x:`熱身3km(含4x100m加速);10km 全力計時,平路、單趟、不要配速員;緩和2km。判讀:41:19=VDOT50(低於現況,要查原因)/40:37=51(符合推估)/39:57=52(已有進步)/39:19=53(超前,上調M配速)/38:41=54(天花板不是問題,W6 的 I 課改回 T)`, v:"10K TT", km:15},
         q2:{t:"Q2·M專項", x:`熱身2km;8km @${M};緩和3km。測驗後第3天,本週高強度已用在測驗上。${hrCap}`, v:`8km@${M}`, km:13},
         lg:{km:25, x:`E @${E},末4km @${M}`} },
-    6:{ q1:{t:"Q1·T延長", x:`熱身2km;2x3km T @${T} 休2分;緩和3km`, v:"2x3km T", km:11},
+    6:{ q1:{t:"Q1·I 天花板", x:`熱身2km;6x1000m I @${pstr(P.i)} 休3分(慢跑);緩和3km。全期最後一堂 I 課 — W7 之後全部轉 M 專項。若 W5 實測 ≤38:41,這堂改回 2x3km T`, v:"6x1000 I", km:11},
         q2:{t:"Q2·M加長", x:`熱身2km;11km @${M};緩和2km。${hrCap}`, v:`11km@${M}`, km:15},
         lg:{km:26, x:`E @${E},末5km @${M}。補給拉到 70 g/hr`} },
     7:{ q1:{t:"Q1·短T(為週五讓路)", x:`熱身2km;4x1000m T ${rep(1000,P.t)} 休2分;緩和2km。本週重頭戲在週五,週二只維持不消耗`, v:"4x1000T", km:8},
         q2:{t:"Q2·🎯 16km @M", x:`熱身2km;16km @${M};緩和2km。全期的決策點 — 撐不撐得完,是 Sub-3 的誠實答案。👟 穿比賽碳板鞋。${hrCap}`, v:`16km@${M}`, km:20},
-        lg:{km:28, x:`E @${E},末5km @${M}。上限2小時40分,超時就停 — 時間比距離重要`} },
+        lg:{km:28, x:`📈 漸速:前 10km ${pstr(P.eHi+15)},中 10km ${pstr(P.eLo)},末 8km @${M}。上限2小時40分,超時就停 — 時間比距離重要`} },
     8:{ q1:{t:"Q1·減量T", x:`熱身2km;2x12分 T @${T} 休3分;緩和2km`, v:"2x12分T", km:11},
         q2:{t:"Q2·M維持", x:`熱身2km;10km @${M};緩和2km。${hrCap}`, v:`10km@${M}`, km:14},
         lg:{km:23, x:`E @${E},末5km @${M}`} },
@@ -183,7 +205,7 @@ function qOf(wk, P){
         lg:{km:32, x:`👟 全程穿比賽碳板鞋。前12km E @${E},【末20km 全部 @${M}】— 85分鐘在比賽配速,全期唯一一次能知道「疲勞狀態下4:15能撐多久」。用比賽日的起床時間(3:30-4:00)、吃比賽日要吃的早餐、等同樣時間再出門、全套比賽裝備。約2小時27分`} },
     10:{ q1:{t:"Q1·敏銳", x:`熱身2km;5x1000m T ${rep(1000,P.t)} 休2分;緩和2km — 趟數減、配速不減`, v:"5x1000T", km:9},
         q2:{t:"Q2·M維持", x:`熱身2km;10km @${M};4x100m加速;緩和2km。${hrCap}`, v:`10km@${M}`, km:14},
-        lg:{km:25, x:`E @${E},末6km @${M}。減量期把長跑砍到20km以下是最常見的錯誤`} },
+        lg:{km:25, x:`📈 漸速 + 🌉 橋演練:前 10km ${pstr(P.eHi+15)},中 9km ${pstr(P.eLo)},末 6km @${M},而且末段找一段上橋引道跑(麥帥一橋牽引道在比賽 40km 之後,這是唯一一次演練)。減量期把長跑砍到20km以下是最常見的錯誤`} },
     11:{ q1:{t:"Q1·短而銳", x:`熱身2km;4x1000m T ${rep(1000,P.t)} 休2分;緩和2km`, v:"4x1000T", km:8},
         q2:{t:"Q2·M記憶", x:`熱身2km;6km @${M};4x100m加速;緩和1km。👟 穿比賽鞋`, v:`6km@${M}`, km:9},
         lg:{km:19, x:`E @${E},末4km @${M}。約98分 — 賽前兩週的長跑該落在90-100分`} },
@@ -198,13 +220,13 @@ function qOf(wk, P){
    唯一不能妥協的仍是傷痛:受傷不是讓計畫變慢,是讓計畫結束。 */
 function gateFor(wk){
   if (wk === 1) return { t:"W1 是恢復週,不是起跑",
-    c:["本週跑量 45km,刻意低於目前的 51km — 讓身體先接住新的訓練節奏","Q 課的強度照表做滿,要輕的是「總量」不是「強度」"],
+    c:["本週跑量 63km,只比目前的 58km 多 10% — 讓身體先接住新的訓練節奏","Q 課的強度照表做滿,要輕的是「總量」不是「強度」"],
     fail:"這週唯一的工作:把身體準備好接受接下來 8 週的加量。沒有別的任務。" };
   if (wk === 4) return { t:"減量週 — 自我檢查點",
     c:["有沒有哪裡在痛?(阿基里斯、足底、脛骨、膝外側)","Q 課有沒有因為跑不動而降速","晨起靜止心率連三天 ≥48?(你的基線 42-44,+5 就是警訊)","減重是否影響到 Q 課 — 守心率只能跑到比上週慢 8 秒以上就是減太快"],
     fail:"⚠️ 有痛點 → 停下來處理,不要等它自己好。其餘兩項異常 → W5 重複 W3 的 57km,少一週加量換不受傷,划算。" };
   if (wk === 8) return { t:"減量週 — 衝峰值前的最後檢查",
-    c:["有沒有任何痛點(下一週是 85km 峰值,帶傷進去會出事)","W7 的 16km @4:15 有沒有完成","晨起靜止心率連三天 ≥48?","體重是否已接近 62kg — W9 之後就不該再動了"],
+    c:["有沒有任何痛點(下一週是 90km 峰值,帶傷進去會出事)","W7 的 16km @4:15 有沒有完成","晨起靜止心率連三天 ≥48?","體重是否已落在 62.5-63kg — W7 之後就不該有赤字了"],
     fail:"⚠️ 有痛點 → W9 峰值降到 70km、長跑縮到 26km、M段縮到 12km。峰值少 15km 不會讓你破不了 3,但受傷會。" };
   return null;
 }
@@ -261,22 +283,23 @@ export default function App(){
   const mToday = GOAL_PACE + tAdj;
   const prim = primaryBy(sel);
 
-  /* 三個輕鬆日(三/四/六)平均分,餘數給週六 */
-  const easyTotal = isRace ? 0 : Math.max(6, km - q.q1.km - q.q2.km - q.lg.km);
-  const eWed = Math.round(easyTotal/3), eThu = Math.round(easyTotal/3);
-  const eSat = easyTotal - eWed - eThu;
+  /* 輕鬆日改時間制:三天同樣分鐘數,不規定公里。
+     括號裡的里程只是「照 5:20 跑的話大概多少」,供對照週總量用,不是目標。 */
+  const eMin   = isRace ? 0 : EASY_MIN[sel];
+  const eKmEq  = Math.round(eMin * 60 / 320);          // 5:20/km 的等效里程
+  const eHint  = `約 ${eKmEq}km`;
 
   const rows = isRace ? [] : [
     { day:"mon", icon:<Moon size={13}/>, color:C.muted, t:"全休", x:"跑步全休。傍晚重訓(見下),這是本週唯一的無跑步日", v:"" },
     { day:"tue", icon:<Footprints size={13}/>, color:C.accent, ...q.q1,
       extra:`傍晚 重訓 ${STRENGTH[ph].t}：${STRENGTH[ph].x}` },
     { day:"wed", icon:<Footprints size={13}/>, color:C.main, t:"輕鬆跑",
-      x:`${eWed}km @${pstr(P.eLo)}-${pstr(P.eHi)},心率壓在 ${HRZ.E[1]} 以下。騎車另外自行安排,不計入課表`, v:`${eWed}km` },
-    { day:"thu", icon:<Footprints size={13}/>, color:C.main, t:"輕鬆跑 + 加速跑",
-      x:`${eThu}km @${pstr(P.eLo)}-${pstr(P.eHi)} 含 6x100m 加速。真的要輕鬆 — 這天跑太快會吃掉週五`, v:`${eThu}km` },
+      x:`${eMin} 分鐘,心率 ${EASY_HR_LO}-${EASY_HR_HI}(${eHint})。不看配速、不看距離,跑滿分鐘數就好。騎車另外自行安排,不計入課表`, v:`${eMin}分` },
+    { day:"thu", icon:<Footprints size={13}/>, color:C.main, t:`輕鬆跑 + ${sel<=6?"上坡":"平路"}加速跑`,
+      x:`${eMin} 分鐘,心率 ${EASY_HR_LO}-${EASY_HR_HI}(${eHint});最後加 ${sel<=6?"6x15-20秒上坡加速,走下來恢復 — 低衝擊徵召高閾值肌纖維,改善經濟性":"6x100m 平路加速 — 接近比賽改回平路求專一性"}。加速跑不算進心率帶。這天跑太快會吃掉週五`, v:`${eMin}分` },
     { day:"fri", icon:<Footprints size={13}/>, color:C.accent, ...q.q2 },
     { day:"sat", icon:<Footprints size={13}/>, color:C.main, t:"輕鬆跑",
-      x:`${eSat}km @${pstr(P.eLo)}-${pstr(P.eHi)};長跑前保留體力,這天跑快會吃掉明天`, v:`${eSat}km` },
+      x:`${eMin} 分鐘,心率 ${EASY_HR_LO}-${EASY_HR_HI}(${eHint});長跑前保留體力,這天跑快會吃掉明天`, v:`${eMin}分` },
     { day:"sun", icon:<Footprints size={13}/>, color:C.red, t:"長跑", x:q.lg.x, v:`${q.lg.km}km` },
   ];
 
@@ -288,39 +311,70 @@ export default function App(){
         <div style={{ marginBottom:14 }}>
           <div className="osw" style={{ fontSize:25, fontWeight:800, letterSpacing:-0.3 }}>tomak · Sub-3</div>
           <div style={{ fontSize:12.5, color:C.muted, marginTop:3 }}>
-            45歲 · 169cm · 65→62kg · HR 178/43 · PB 3:08:05　|　2026/10/19 起 · 12週 · 渣打 2027/01/10(日)
+            45歲 · 169cm · 65→62.5kg · HR 178/43 · PB 3:08:05　|　2026/10/19 起 · 12週 · 渣打 2027/01/10(日)
           </div>
         </div>
 
         {/* 核心診斷 */}
         <div style={{ background:C.surface, border:`1.5px solid ${C.accent}`, borderRadius:12, padding:"12px 14px", marginBottom:12 }}>
           <div style={{ display:"flex", gap:6, alignItems:"center", fontWeight:700, fontSize:13.5, color:C.accent, marginBottom:6 }}>
-            <Target size={15}/> 2024 台北馬告訴我們什麼
+            <Target size={15}/> 時間要從哪裡拿
           </div>
-          <div style={{ fontSize:12.3, lineHeight:1.75 }}>
-            3:08:05,前半 1:33:58 / 後半 1:34:07 —— <b>正負差 9 秒</b>,脫鉤 +4.1%,平均心率 150(84% max)。
-            配速配得近乎完美,所以 3:09 裡面<b>沒有藏著「配速沒配好」的免費空間</b>。
-            <div style={{ marginTop:6 }}>
-              但 35km 之後配速 4:23 → 4:33 而<b>心率不升反降</b>(156→151)。心率不升、速度掉 ——
-              那不是心肺到頂,是肌肉與肝醣見底。你比賽只用到 84% 的最大心率,心肺有餘裕。
-            </div>
-            <div style={{ marginTop:6, padding:"7px 9px", background:C.surface2, borderRadius:8 }}>
-              <b>所以這 12 週的重心是三件事</b>：疲勞狀態下維持 4:15 的能力(長跑末段 M 配速)、
-              把補給從 45g/hr 拉到 75g/hr、以及用重訓撐住 35km 之後的離心耐受。
-              <b>不是練更多間歇</b> —— 你的速度端 VDOT 54.7,不缺那個。
-            </div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(118px,1fr))", gap:7 }}>
+            {[["衰退預算","10 秒/km",C.red,"末段 7km 掉 10 秒/km = 吃掉全部餘裕"],
+              ["補給","45 → 78 g/hr",C.green,"2024 只補回消耗的 25%"],
+              ["體重","65 → 62.5kg",C.sky,"W1-W6 完成,之後不動"],
+              ["訓練","+1~2 VDOT",C.accent,"58 → 90km,M 配速 158km"]].map(([k,v,col,note])=>(
+              <div key={k} style={{ background:C.surface2, borderRadius:9, padding:"8px 10px" }}>
+                <div style={{ fontSize:10.5, color:C.muted }}>{k}</div>
+                <div className="mono" style={{ fontSize:14.5, fontWeight:700, color:col }}>{v}</div>
+                <div style={{ fontSize:9.8, color:C.muted, marginTop:3, lineHeight:1.45 }}>{note}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ fontSize:11.5, color:C.muted, marginTop:8, lineHeight:1.6 }}>
+            2024 的配速是教科書級的(正負差 9 秒),所以 3:08 裡面沒有「配速沒配好」的免費空間。
+            <b style={{ color:C.text }}> 四項合計 8.5-14.4 分,缺口 8.5 分 —— 悲觀端剛好打平,沒有哪一項可以放掉。</b>
           </div>
         </div>
+
+        {/* 輕鬆跑執行規則 */}
+        {!isRace && (
+        <div style={{ background:C.surface, border:`1px solid ${C.main}44`, borderRadius:12, padding:"11px 13px", marginBottom:12 }}>
+          <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:7, flexWrap:"wrap" }}>
+            <span style={{ fontWeight:700, fontSize:13 }}>輕鬆日 = 時間 + 心率</span>
+            <span className="mono" style={{ fontSize:12, color:C.main, fontWeight:700 }}>本週 {eMin} 分 × 3 天</span>
+            <span style={{ fontSize:11, color:C.muted, marginLeft:"auto" }}>不規定公里數</span>
+          </div>
+          <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(104px,1fr))", gap:7, marginBottom:8 }}>
+            {[["前 30 分",`${EASY_HR_LO}-${EASY_HR_HI}`,"守住這個帶,它是今天狀況的判斷依據",C.main],
+              ["30 分之後",`可漂到 ${EASY_HR_DRIFT}`,"心臟漂移是正常的,別為了壓心率一直減速",C.accent],
+              ["配速地板",`${EASY_PACE_FLOOR}/km`,`連這個都壓不住 ${EASY_HR_DRIFT} → 當天提早結束`,C.red]].map(([k,v,note,col])=>(
+              <div key={k} style={{ background:C.surface2, borderRadius:9, padding:"7px 9px" }}>
+                <div style={{ fontSize:10.5, color:C.muted }}>{k}</div>
+                <div className="mono" style={{ fontSize:14, fontWeight:700, color:col }}>{v}</div>
+                <div style={{ fontSize:9.8, color:C.muted, marginTop:3, lineHeight:1.45 }}>{note}</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ fontSize:11.3, color:C.muted, lineHeight:1.6 }}>
+            有氧適應的劑量單位是<b>時間</b>,不是距離 —— 60 分鐘跑 5:20 和 5:50,里程差 1.4km,刺激幾乎一樣。
+            這個處方還會<b>自動調節</b>:累的那天你自然跑慢,分鐘數照跑、里程自己縮,週負荷跟著降。
+            公里制沒有這個機制,累的那天反而吃更多負荷。
+            <span style={{ color:C.main }}> 配速地板那條就是恢復不足的警報器,比看 HRV 直接。</span>
+          </div>
+        </div>
+        )}
 
         {/* 配速 + 心率 */}
         <div style={{ background:C.surface, border:`1px solid ${C.line}`, borderRadius:12, padding:"11px 13px", marginBottom:12 }}>
           <div style={{ display:"flex", alignItems:"baseline", gap:8, marginBottom:8, flexWrap:"wrap" }}>
             <span style={{ fontWeight:700, fontSize:13 }}>本週配速</span>
             <span className="mono" style={{ fontSize:11.5, color:C.muted }}>訓練 VDOT {V.toFixed(1)}</span>
-            <span style={{ fontSize:11, color:C.muted, marginLeft:"auto" }}>W6 實測後用下方微調</span>
+            <span style={{ fontSize:11, color:C.muted, marginLeft:"auto" }}>W5 實測後用下方微調</span>
           </div>
           <div style={{ display:"grid", gridTemplateColumns:"repeat(auto-fit,minmax(88px,1fr))", gap:7 }}>
-            {[["E 輕鬆",`${pstr(P.eLo)}-${pstr(P.eHi)}`,C.main,`${HRZ.E[0]}-${HRZ.E[1]}`],
+            {[["E 輕鬆","看時間",C.main,`${EASY_HR_LO}-${EASY_HR_HI}`],
               ["M 目標",pstr(GOAL_PACE),C.red,`${HR_M[0]}-${HR_M[1]}`],
               ["T 閾值",pstr(P.t),C.accent,`${HRZ.T[0]}-${HRZ.T[1]}`],
               ["I 間歇",pstr(P.i),C.iron,`${HRZ.I[0]}-${HRZ.I[1]}`],
@@ -533,7 +587,8 @@ export default function App(){
             而生長激素分泌、肌肉蛋白合成、肝醣再合成大多發生在深睡期。
             <div style={{ marginTop:5 }}>
               <b>一小時的睡眠,對 1/10 的成績大概比任何一堂 Q 課都有用。</b>
-              最實際的做法是把晨跑從 04:00 往後移到 05:00-05:30,缺口立刻從 2 小時縮到 1 小時。
+              <span style={{ color:C.main }}>但不要用「晨跑延後」去補 —— 渣打 05:00 起跑,你 04:00 出門等於正在 05:00 跑步,
+              那是專一性資產。缺口要從<b>提早就寢</b>那一端補,長跑和 M 課維持比賽時間。</span>
             </div>
           </div>
         )}
@@ -541,25 +596,30 @@ export default function App(){
         {/* 體重時間軸 */}
         {sel>=8 && !isRace && (
           <div style={{ background:C.surface2, border:`1px solid ${C.line}`, borderRadius:10, padding:"9px 11px", marginTop:10, fontSize:11.5, lineHeight:1.65 }}>
-            <b>⚖️ 體重時間軸：65 → 62kg</b>　減 3kg = 體重 -4.6%,約 4-8 秒/km、全馬 <b>3.2-5.3 分鐘</b> ——
-            以 8.5 分鐘的缺口來說,這一項可能佔一半。
+            <b>⚖️ 體重時間軸：65 → 62.5-63kg</b>　是區間不是定點。減 2.5kg ≈ 2-2.5 秒/km/kg = 全馬 <b>3.5-4.4 分鐘</b>。
             <div style={{ marginTop:4 }}>
-              <b>W1-W8 慢慢來</b>,每週不超過 0.4kg。<b>W9 之後停止</b>,體重不再動。
-              <b>比賽週反而要增加 1-1.5kg</b>(碳水填充帶的水分)—— 上場比訓練期重一點是正常的,那是你 35km 之後要燒的東西。
+              <b>W1-W6 完成,350-400 g/週</b>。<b>W7 之後零赤字</b> —— 90km 的兩個關鍵週不能帶著熱量赤字進去,
+              少掉的那 0.5kg 值約 0.7-1.2 分,一個被赤字拖壞的峰值週值更多。
+              赤字放在輕鬆日和週一全休,<b>Q 課與長跑前後照常補碳</b> —— 不要用少吃碳水製造赤字。
+              <b>比賽週增加 1-1.5kg</b>(肝醣填充帶的水分),那是你 35km 之後要燒的東西。
+            </div>
+            <div style={{ marginTop:5, padding:"6px 8px", background:C.surface, borderRadius:8 }}>
+              <b>體脂 15-18%(家用體脂計誤差 ±3-5%,別追這個數字)</b>。62kg 從 15% 出發是 10.9% ——
+              45 歲 + 週跑 90km,我不建議低於 12%。<b>用槓鈴當閘門</b>:
+              深蹲 95kg 5×5 與六角槓硬舉 110kg 5×5 撐得住 = 掉的是脂肪;開始做不完 = 掉的是淨體重。
             </div>
             <div style={{ marginTop:4, color:C.red }}>
-              ⚠️ 你同時要把跑量從 51 加到 85km(+67%)。兩件事一起做,難度不是相加是相乘。
-              判斷標準:<b>Q 課跑不動就是減太快了</b> —— 守心率只能跑到比上週慢 8 秒以上、長跑末段 M 段撐不完、
-              或晨起靜止心率連三天 ≥48,當週就先停止減重。
+              ⚠️ 三條硬停條件(任一觸發就停赤字):① 5×5 做不完 ② 體重低於 62.0
+              ③ 靜止心率連三天 ≥48 且體重在掉。同時把跑量從 58 加到 90km,兩件事一起做難度是相乘不是相加。
             </div>
           </div>
         )}
 
         <div style={{ marginTop:14, fontSize:11, color:C.muted, lineHeight:1.7 }}>
           純跑步課表,六個跑步日。騎車由你自行安排,不計入這裡的週量。
-          峰值 85km,自目前 51km 以每漸進週 +7~11% 成長、每四週減量。
+          峰值 90km,自目前 58km 以每漸進週 +8~10% 成長、每四週減量。輕鬆日用時間+心率,不規定公里。
           減量期 85 → 62 → 48 → 比賽週 26,總減幅 44%,落在 Mujika &amp; Padilla (2003) 的 41-60% 最佳區,強度全程維持。
-          輕鬆量佔 68%、高強度 26-34%、全期 M 配速 158km、單堂最長 M 20km(W9 長跑末段)。
+          輕鬆量佔 73%、高強度 21-29%、全期 M 配速 158km、單堂最長 M 20km(W9 長跑末段)。
           長跑峰值 32km / 約 2 小時 27 分。
           負荷模型:比賽日 CTL 保留 88%、TSB +12.1、Garmin 負荷比 0.62 —— 三項都在巔峰窗內。
         </div>
