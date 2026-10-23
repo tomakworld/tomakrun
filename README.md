@@ -1,37 +1,10 @@
-# tomak · Sub-3
+# tomak Sub-3 課表
 
-單獨一份課表,沒有路由 —— 網址根目錄 `/` 直接就是課表。
-2026-10-19 起 · 12週 · 渣打馬拉松 2027-01-10。
+單一 HTML 檔，沒有建置步驟。推上 Git，Zeabur 會自動偵測成靜態站。
+不用設 build command，沒有 package.json，不會出現 npm run build 失敗。
 
-## 為什麼要整包,不能只上傳 .jsx
+本機預覽：直接用瀏覽器開 index.html。
 
-`.jsx` 是 React 原始碼,瀏覽器看不懂,要先 build 成 HTML + JS。
-這個資料夾就是完整的專案,直接推上去即可。
+要改內容：最下面 `<script>` 區塊的 `W`（每週課表）、`PACE`（配速）、`STR`（重訓）、`ZONES` / `WX`。
 
-## Zeabur 部署
-
-推到 GitHub 再接 Zeabur,會自動偵測 Vite,不用設定。
-要手動指定的話:
-
-- Install Command: `npm install`
-- Build Command: `npm run build`
-- Output Directory: `dist`
-
-## 本機測試
-
-```bash
-npm install
-npm run dev       # http://localhost:5173
-npm run build
-npm run preview
-```
-
-## 之後更新課表
-
-只要覆蓋 `src/Tomak.jsx` 一個檔,其他都不用動。
-`main.jsx` 是用 default import,不管裡面函式叫什麼名字都能接。
-
-## 資料儲存
-
-VDOT 微調、氣溫、濕度的設定存在瀏覽器 localStorage(key 開頭 `tomak:`)。
-換裝置要重設一次。手機瀏覽器可能清除網站資料,建議加入書籤或主畫面。
+打勾紀錄：claude.ai 版會存雲端、跨裝置同步。自架版沒有那個 API，自動退回瀏覽器 localStorage，只存在那台裝置。

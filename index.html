@@ -1,14 +1,761 @@
 <!doctype html>
 <html lang="zh-Hant">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#1F6F5C" />
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <title>tomak · Sub-3</title>
-  </head>
-  <body style="margin:0">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Sub-3">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f3f5ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#151b17" media="(prefers-color-scheme: dark)">
+<meta name="description" content="12 週破 3 馬拉松訓練計畫 · 2027/01/10 渣打臺北">
+<link rel="apple-touch-icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAAFN0lEQVR42u3dO3IbVxAFUE8Xl8KUOXKlXoFjZ14PM8VagVLlzJVqL3SkKpkuivgOXt8+N1VJRfQ7c9UzAMntD7k4j4en12v8Oz9evm+meVkMcGe0sAM9Di/kQI8ADDjQ8YjhHgw6HTHcQ0BPhTwR9gYx3ECDDDbQIIMNNMhgzwANMtgRoEEG+3cpmCVp5puhSlJbF8ySdBab4UlSWxfMknRGZVCSdFab4UjSClIwS9IZlkFI0lkWzJJ0pgWzJJ3tBrIk3SwWzJJ05gWzJJ19wSxJBgpmSUJdxixJqe5XpGjpXUDDLPewUTBLEuqCWZJQF8yShNpTDonKtuqV1jHPXw5n/91//noZPbtrfeZjg3l/vJDfDvUG8zqAAb8c9YOta23E730901eUmzR0ajuvBnlaa1/S0hvMPSGnwz4XtZWjOeS3r2H6KnLWVZDSzgmQkxv7nJbeJmJOhpwG+1TU494pnIR54us9CXT3dp52uAmv+1RzDw50Fur0m8a61ZUCs3nco6XL4UE9rqE7tjPMWfM51mA5LKhHNXS3doY5d17HWCyHI0lzq5R2hnnG/D4yWQ5DkuZYDkGS5lmd1w2YZ871dzb9GAOJSmlnSWrpMmxJmnMZcmb+/vPbyHk/dFw35PpwO+bx8PT69jtaWn0eeno73wvv85dDm89R+67vULifv34aObuty7qR2M63bNxbgF61pX9dOzyHvmOmtugt0wJ08u7cCXWHc9DQUGc29Kr785QnG11Qr3gev9rV0IGoJzd+aQNNnXQuGlo0tNwuk9/KvhroFW8IJ64bnTCvdj4/DWtomK0csi7m6c+0gdbMQNufYV71nDR0I8yfv37yNjnQOZjtyUeA9i1XvTBD/X4eD0+vGroh5vf+DPIFV47UG8JrY14F8WrnpaEbY9bMQMdhhhroOMwCNMxAC8xAwwwz0DAL0DAL0DADLTADDTPMQMMsQMMMtMAM9K2y8q8+gHn986q3v3RFYO6aHy/fNysHzFYOmGEGGmaZCnqFGw2Ye97Aa2iYNTTMMC8N2qM7mLvnp+FlG3rv/Qzm/vuzlQNmOzTMMAO98H9rp+KEee3P29TbpXpijkUK89o3hC1Wjr3a4COsMK/fznboI9HCbIdu2wp+5nLfdv4faG+w/BcxzL3251Yrx97tAHO/drZDS/4OvfLa0aUltPN91g0NLfkNrS2k87zr2Co3ZJhXXzdarxxQm+9JoD2Tlm7t3P6mUEubaxRoqM3zJNBd1g6o58zxI5PlMCRpfnXpFeFQYF6lnaMaGmrzOhp0t0d4UOfN6ViD5bBgHtfQHVsa6py5nGKvHB7MSTm5dR8PT69dX+zzlwPIzXLqZlAO1eseuUN33qUno+78es+xdjbOzqvHhBWk+4V7bnE+uEHKgj39Jvii9SGhpVMaOwnyJWvtxftwGupusNMa+dJ7tNErR+dVxPP1GzV0akuv2NrpiK/xBO1qj+AmoN4b+KQWvtbj4Ks+U56G+prIJ68Q13xvww6tUaNSq15pop3vDhpqubeV6vKFCsx3Aw213MtGdf3CBebdQYvsnep+RYp23r2hoZa9DFTaC5K5mHffoaGG+da5G7Dpn/sAOaChtTXMsaChhjkONNQwx4GGGuaIm0I3iyDHNrS2hjkWNNQwR60cVhCQ4xpaWzuL2IbW1iBHNbS2NvPYhtbWIMeCBhvkSNBggxwJGmz3JZGgwZ59gz3iqQHc2YjHgZ4Oe9LjzrHPddNxT31m742KINzeeAK6NXCAgW6LHF6g22GH9vL8CyGqFAP3VXpOAAAAAElFTkSuQmCC">
+<link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAFb0lEQVR42u3dMXIbRxCFYWwXjsKUOXKnPoFjZz4PM8c8gVPnzJXqLnRiV8ksyQaws+D0vO/lYgnd/z/dA2LB7SSH5Ony/D7y5319+7Kp6vgo6kSQk4MAYCcFAQBPCAKAngwEAD0ZCAB6MhAA+EQgAPCJQADQk4EAwCfCkBT4JbnGm6ZI8jTYgC/JImzAl2QRCvyS3JtNcSV5GhT4JblnpZCS3LtN8SR5JSrwS3JPS6Ekubeb4kjySlTgl+Sel0JIcu8L/JLMQIFfkiUo8EuyBAV+SZagwC/JEhT4JVmCAr8kS1Dgl2QJCvySLEGBX5IlKOWV5FQ3Y8UUmFoA8EsnCTbwH5uX18uuf//bL2+K+CEjnyU4K+c8sF/7M0kx4QRIPP2PAN6UeOwU2MDfE3oyjJFgA/8a4KeKsFcCd4CFoP/R/92d4aAJsOrp3xn8xKmwZwoU+DPgX/m17WHRChQA/vdep7Voxwq00umfAn7CWnTPKhT9Ybh0+NXgDgFWOf3Bv14t7mHzrNmSfDeoow0DvxrNPAUK/JIsQWmoJNesRhulkSToNAVKAyW5hqVxklzL/xWg4/oDfjW9lt3SKEmuba10+oNfjW9luDRGkmtdK+3+IreyvMQEcPqr+SF3AI2Q1Wtfndcf8OvB3jXIt0NLdNoK4PS/P7/+/Kde/J1z1/VHHgf4Knm6PL9/fG645RNh6af/jIC/vF5aPk12Bj/AkyUo6898+f2Pn1r//NnXoLaX4KTVpyuk3XrkbVASRIcAJCBAh/0/+Z2fbhLM3qtvWTcBSGACOFFIkNozE6BR/IaXAOC3So0XYOYLsPWn92+GZ78ImwDgNwEE/AQQ8BPADgn+rB6aAAvB7x0eAsTDT4IbBfAMwHon/48kIMe/83R5fjcBFl17wN58BUq5AB+5888iwcy9NAEWv/CaBASIhZ8EBIiHnwQEiIdfCAB+IQD4hQDgFwKAXwgAfiEA+Akg4CeAgJ8AAn4CCPgJIOAnwGemy5/aAX/vXpoA4M+eAB//bKSAPyVf375sJgD43QEE/ARweQJ/2AXYBAC/CaAE4CeAgD9ZgJnfCv3MHRL86+7//zBvAoDfBBDwE8AoBX/I+mMCgF8+CjD7Z4IecaL42sGM0/9b1k2AnTCD3x0gVgLwE2DZ0drlj09YfwYK4NmA6yAHf998ZLzdCvToE+baP0An/U7/tneAz5IA/GvB/10BrEF2/pT1p+0E6HziOP2tQCJzC9BlDTIF9GDP+rPEBCCB2sevQCRQ8+ECeDdIVsl/sbzMJdgUUOvhK1C3KUACNb6V4dIgSa5t7TVIo8Df9fRfcgKQQC2HTgCNA//KuUqAzm+JkiCzdtcyWxopyTWr0UZpKPi7nP43TwASgH8l+E+n0+mc2uCX1wvaHQ633wFW+YyQabBeLe5hszQe/Mm5+zR/ujy/r1SItJVoNfDv3UzOJ4m6G5h6g1agVZ8XWBmQVV/bHhZ3Q7zaKrTiWrSy1HsPYivQleB0k8Gq86AJsPoU6DYVksAfsYYP2+OTJJhNhsTTftQddOhFNlGCzxAifb0Z+QaMO8DBYO6Vwi7f4A5gCkjH0/90OuCjEL5PSLrAf4gAJJBOTPl2aIlOdTNWnP5tJgAJZHaGqvsLEPBPfwcggczKTK32ggT8UwpAApmRkVr9BQr4pxKABDITE5X2ggX8UwhAApmBgUovgGT3vhRCkns+HXieJwB+3AQwDcBPABKA3wpkJQK+CWAagJ8AJAC/FchKBHwTwDTQGxPANAA+AYgAfAIQAfjJdwD3AzU2AUwD4BOADKAnABGATwAiAJ8AZAA9AcgAegKQAfQESBcC8ASIkQLsBFheDpAfk78AMb9OOEp2q9cAAAAASUVORK5CYII=">
+<link rel="manifest" href="data:application/manifest+json;base64,eyJuYW1lIjoidG9tYWsgU3ViLTMiLCJzaG9ydF9uYW1lIjoiU3ViLTMiLCJzdGFydF91cmwiOiIuLyIsImRpc3BsYXkiOiJzdGFuZGFsb25lIiwiYmFja2dyb3VuZF9jb2xvciI6IiNmM2Y1ZWMiLCJ0aGVtZV9jb2xvciI6IiMyNDM4MmQiLCJpY29ucyI6W3sic3JjIjoiZGF0YTppbWFnZS9wbmc7YmFzZTY0LGlWQk9SdzBLR2dvQUFBQU5TVWhFVWdBQUFNQUFBQURBQ0FZQUFBQlMzR3dIQUFBRmIwbEVRVlI0MnUzZE1YSWJSeENGWVd3WGpzS1VPWEtuUG9Galp6NFBNOGM4Z1ZQbnpKWHFMblJpVjhrc3lRYXdzK0Qwdk8vbFlnbmQvei9kQTJMQjdTU0g1T255L0Q3eTUzMTkrN0twNnZnbzZrU1FrNE1BWUNjRkFRQlBDQUtBbmd3RUFEMFpDQUI2TWhBQStFUWdBUENKUUFEUWs0RUF3Q2ZDa0JUNEpibkdtNlpJOGpUWWdDL0pJbXpBbDJRUkN2eVMzSnROY1NWNUdoVDRKYmxucFpDUzNMdE44U1I1SlNyd1MzSlBTNkVrdWJlYjRranlTbFRnbCtTZWwwSkljdThML0pMTVFJRmZraVVvOEV1eUJBVitTWmFnd0MvSkVoVDRKVm1DQXI4a1MxRGdsMlFKQ3Z5U0xFR0JYNUlsS09XVjVGUTNZOFVVbUZvQThFc25DVGJ3SDV1WDE4dXVmLy9iTDIrSytDRWpueVU0SytjOHNGLzdNMGt4NFFSSVBQMlBBTjZVZU93VTJNRGZFM295akpGZ0EvOGE0S2VLc0ZjQ2Q0Q0ZvUC9SLzkyZDRhQUpzT3JwM3huOHhLbXdad29VK0RQZ1gvbTE3V0hSQ2hRQS92ZGVwN1ZveHdxMDB1bWZBbjdDV25UUEtoVDlZYmgwK05YZ0RnRldPZjNCdjE0dDdtSHpyTm1TZkRlb293MER2eHJOUEFVSy9KSXNRV21vSk5lc1JodWxrU1RvTkFWS0F5VzVocVZ4a2x6TC94V2c0L29EZmpXOWx0M1NLRW11YmExMCtvTmZqVzlsdURSR2ttdGRLKzMrSXJleXZNUUVjUHFyK1NGM0FJMlExV3RmbmRjZjhPdkIzalhJdDBOTGROb0s0UFMvUDcvKy9LZGUvSjF6MS9WSEhnZjRLbm02UEw5L2ZHNjQ1Uk5oNmFmL2pJQy92RjVhUGsxMkJqL0FreVVvNjg5OCtmMlBuMXIvL05uWG9MYVg0S1RWcHl1azNYcmtiVkFTUkljQUpDQkFoLzAvK1oyZmJoTE0zcXR2V1RjQlNHQUNPRkZJa05vekU2QlIvSWFYQU9DM1NvMFhZT1lMc1BXbjkyK0daNzhJbXdEZ053RUUvQVFROEJQQURnbityQjZhQUF2Qjd4MGVBc1REVDRJYkJmQU13SG9uLzQ4a0lNZS84M1I1ZmpjQkZsMTd3TjU4QlVxNUFCKzU4ODhpd2N5OU5BRVd2L0NhQkFTSWhaOEVCSWlIbndRRWlJZGZDQUIrSVFENGhRRGdGd0tBWHdnQWZpRUErQWtnNENlQWdKOEFBbjRDQ1BnSklPQW53R2VteTUvYUFYL3ZYcG9BNE0rZUFCLy9iS1NBUHlWZjM3NXNKZ0Q0M1FFRS9BUndlUUovMkFYWUJBQy9DYUFFNENlQWdEOVpnSm5mQ3YzTUhSTDg2KzcvL3pCdkFvRGZCQkR3RThBb0JYL0krbU1DZ0Y4K0NqRDdaNEllY2FMNDJzR00wLzliMWsyQW5UQ0QzeDBnVmdMd0UyRFowZHJsajA5WWZ3WUs0Tm1BNnlBSGY5OThaTHpkQ3ZUb0UrYmFQMEFuL1U3L3RuZUF6NUlBL0d2Qi8xMEJyRUYyL3BUMXArMEU2SHppT1AydFFDSnpDOUJsRFRJRjlHRFArclBFQkNDQjJzZXZRQ1JROCtFQ2VEZElWc2wvc2J6TUpkZ1VVT3ZoSzFDM0tVQUNOYjZWNGRJZ1NhNXQ3VFZJbzhEZjlmUmZjZ0tRUUMySFRnQ05BLy9LdVVxQXptK0praUN6ZHRjeVd4b3B5VFdyMFVacEtQaTduUDQzVHdBU2dIOGwrRStuMCttYzJ1Q1gxd3ZhSFE2MzN3RlcrWXlRYWJCZUxlNWhzelFlL01tNSt6Ui91ankvcjFTSXRKVm9OZkR2M1V6T0o0bTZHNWg2ZzFhZ1ZaOFhXQm1RVlYvYkhoWjNRN3phS3JUaVdyU3kxSHNQWWl2UWxlQjBrOEdxODZBSnNQb1U2RFlWa3NBZnNZWVAyK09USkpoTmhzVFRmdFFkZE9oRk5sR0N6eEFpZmIwWitRYU1POERCWU82VndpN2Y0QTVnQ2tqSDAvOTBPdUNqRUw1UFNMckFmNGdBSkpCT1RQbDJhSWxPZFROV25QNXRKZ0FKWkhhR3F2c0xFUEJQZndjZ2djektUSzMyZ2dUOFV3cEFBcG1Sa1ZyOUJRcjRweEtBQkRJVEU1WDJnZ1g4VXdoQUFwbUJnVW92Z0dUM3ZoUkNrbnMrSFhpZUp3QiszQVF3RGNCUEFCS0Ezd3BrSlFLK0NXQWFnSjhBSkFDL0ZjaEtCSHdUd0RUUUd4UEFOQUErQVlnQWZBSVFBZmpKZHdEM0F6VTJBVXdENEJPQURLQW5BQkdBVHdBaUFKOEFaQUE5QWNnQWVnS1FBZlFFU0JjQzhBU0lrUUxzQkZoZURwQWZrNzhBTWI5T09FcDJxOWNBQUFBQVNVVk9SSzVDWUlJPSIsInNpemVzIjoiMTkyeDE5MiIsInR5cGUiOiJpbWFnZS9wbmcifV19">
+<style>
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{margin:0}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<title>tomak Sub-3</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* 版面概念:編輯式賽事報告 —— 深色倒數卡定錨,週跑量柱狀圖當導覽主幹,七天卡片是工作面 */
+:root{
+  --bg:#f3f5ec; --surface:#fffef8; --surface-2:#eaeee1;
+  --ink:#1d2a22; --ink-2:#5f6b60; --ink-3:#8a9589;
+  --line:#dbe1d4; --line-2:#c9d2c0;
+  --deep:#24382d; --deep-ink:#e9f0e4;
+  --lime:#9bc24a; --lime-bright:#b9de65; --lime-soft:#e2efbd;
+  --brick:#9d4b2f; --brick-soft:#f2e2da;
+  --slate:#3f6b7d; --slate-soft:#dde9ed;
+  --display:'Archivo',system-ui,-apple-system,'Noto Sans TC',sans-serif;
+  --body:'Archivo',system-ui,-apple-system,'Noto Sans TC',sans-serif;
+  --data:'IBM Plex Mono',ui-monospace,SFMono-Regular,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#151b17; --surface:#1d2620; --surface-2:#263028;
+  --ink:#e7ede4; --ink-2:#9dab9e; --ink-3:#7a8a7c;
+  --line:#2c362e; --line-2:#3a463c;
+  --deep:#0e1511; --deep-ink:#e9f0e4;
+  --lime:#b4d861; --lime-bright:#c6e573; --lime-soft:#2b3a1d;
+  --brick:#d98a6b; --brick-soft:#33231c;
+  --slate:#86b2c4; --slate-soft:#1d2a30;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#151b17; --surface:#1d2620; --surface-2:#263028;
+  --ink:#e7ede4; --ink-2:#9dab9e; --ink-3:#7a8a7c;
+  --line:#2c362e; --line-2:#3a463c;
+  --deep:#0e1511; --deep-ink:#e9f0e4;
+  --lime:#b4d861; --lime-bright:#c6e573; --lime-soft:#2b3a1d;
+  --brick:#d98a6b; --brick-soft:#33231c;
+  --slate:#86b2c4; --slate-soft:#1d2a30;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.65;-webkit-text-size-adjust:100%}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,p{margin:0}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.6vw,50px);line-height:1.14;letter-spacing:-.035em;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(20px,2.6vw,26px);line-height:1.25;letter-spacing:-.02em;text-wrap:balance}
+h3{font-family:var(--display);font-weight:700;font-size:16px;letter-spacing:-.01em}
+.mono{font-family:var(--data);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--display);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2.5px solid var(--lime);outline-offset:3px;border-radius:3px}
+
+/* header */
+header{border-bottom:1px solid var(--line)}
+.hrow{display:flex;align-items:center;gap:14px;padding-block:16px;flex-wrap:wrap}
+.brand{display:flex;align-items:center;gap:9px;font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-.03em;color:inherit;text-decoration:none}
+.mark{width:26px;height:26px;border-radius:50%;background:var(--lime-bright);color:#1d2a22;display:grid;place-items:center;font-size:13px;flex-shrink:0}
+.brand span{color:var(--ink-3);font-weight:500}
+.htag{margin-left:auto;display:flex;align-items:center;gap:10px}
+.theme-btn{border:1px solid var(--line-2);border-radius:20px;padding:5px 12px;font-size:11.5px;color:var(--ink-2)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.2fr .95fr;gap:36px;align-items:center;padding-block:40px 28px}
+.hl{background:linear-gradient(transparent 66%,var(--lime-soft) 66%,var(--lime-soft) 94%,transparent 94%)}
+.hero p{color:var(--ink-2);margin-top:18px;max-width:46ch}
+.chips{display:flex;gap:7px;margin-top:20px;flex-wrap:wrap}
+.chips i{font-style:normal;border:1px solid var(--line-2);border-radius:30px;padding:4px 12px;font-size:11.5px;color:var(--ink-2)}
+.racecard{background:var(--deep);color:var(--deep-ink);border-radius:16px;padding:26px;position:relative;overflow:hidden;isolation:isolate;min-width:0}
+.oval{position:absolute;width:360px;height:470px;border:1px solid rgba(185,222,101,.22);border-radius:200px;transform:rotate(30deg);right:-180px;top:-60px;z-index:-1}
+.oval i{position:absolute;inset:16px;border:1px solid rgba(185,222,101,.16);border-radius:200px}
+.oval i:nth-child(2){inset:32px}
+.dist{font-family:var(--display);font-weight:700;font-size:clamp(54px,8vw,78px);letter-spacing:-.06em;line-height:1.1;margin-top:6px}
+.dist em{font-style:normal;font-weight:300;opacity:.75}
+.rbot{display:flex;justify-content:space-between;align-items:flex-end;gap:16px;margin-top:14px}
+.rbot small{display:block;color:rgba(233,240,228,.6);font-size:10.5px;letter-spacing:.08em}
+.cd{text-align:right}
+.cd b{font-family:var(--display);font-size:34px;font-weight:700;color:var(--lime-bright);letter-spacing:-.03em;line-height:1.1;display:block}
+
+/* metrics */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);border-block:1px solid var(--line);margin-bottom:26px}
+.metric{padding:18px 20px;border-right:1px solid var(--line);min-width:0}
+.metric:first-child{padding-left:0}
+.metric:last-child{border-right:0}
+.metric small,.metric span{display:block;font-size:11.5px;color:var(--ink-2)}
+.metric b{display:block;font-family:var(--display);font-size:27px;font-weight:700;letter-spacing:-.03em;margin:3px 0 1px;white-space:nowrap}
+.metric b i{font-style:normal;font-size:14px;font-weight:500;letter-spacing:0}
+
+/* tabs */
+nav.tabs{display:flex;gap:26px;border-bottom:1px solid var(--line);margin-bottom:26px}
+nav.tabs button{padding:11px 0 14px;color:var(--ink-3);font-weight:600;position:relative}
+nav.tabs button[aria-current]{color:var(--ink)}
+nav.tabs button[aria-current]::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:var(--lime)}
+
+/* chart */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+.chart{display:flex;align-items:flex-end;gap:9px;padding-top:18px;min-height:150px}
+.bar{flex:1;display:flex;flex-direction:column;align-items:center;gap:5px;min-width:0}
+.bar s{display:block;width:100%;border-radius:4px 4px 0 0;background:var(--surface-2);text-decoration:none;transition:background .14s}
+.bar:hover s{background:var(--line-2)}
+.bar[aria-pressed="true"] s{background:var(--lime-bright)}
+.bar.taper s{background:var(--slate-soft)}
+.bar.taper:hover s{background:var(--line-2)}
+.bar[aria-pressed="true"].taper s{background:var(--lime-bright)}
+.bar u{text-decoration:none;font-family:var(--data);font-size:11px;color:var(--ink-2)}
+.bar[aria-pressed="true"] u{font-weight:600;color:var(--ink)}
+.bar var{font-style:normal;font-size:10.5px;color:var(--ink-3)}
+.cfoot{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:13px;padding-top:10px}
+
+/* week */
+.whead{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin:26px 0 14px}
+.wtools{display:flex;align-items:center;gap:8px}
+.wtools b{font-family:var(--display);font-size:25px;font-weight:700;letter-spacing:-.03em}
+.wtools button{border:1px solid var(--line-2);border-radius:50%;width:34px;height:34px;display:grid;place-items:center;color:var(--ink-2)}
+.wtools button:disabled{opacity:.3;cursor:not-allowed}
+.mstrip{display:flex;gap:3px;flex-wrap:wrap;margin-bottom:16px}
+.mstrip div{flex:1 1 42px;text-align:center;padding:5px 2px;border-radius:7px;background:var(--surface-2)}
+.mstrip div[data-on]{background:var(--brick);color:#fff}
+.mstrip em{font-style:normal;display:block;font-size:9px;color:var(--ink-3)}
+.mstrip div[data-on] em{color:rgba(255,255,255,.78)}
+.mstrip b{font-family:var(--data);font-size:11.5px;font-weight:600}
+
+/* days */
+.days{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:9px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 12px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.day.rest{background:var(--surface-2);border-color:transparent}
+.day.key{border-color:var(--lime);box-shadow:inset 0 0 0 1px var(--lime)}
+.day.long{background:var(--lime-soft)}
+.day.done{border-color:var(--lime);background:var(--lime-soft)}
+.dtop{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.dtop span{font-size:12px;font-weight:600}
+.dtop small{display:block;font-family:var(--data);font-size:10px;color:var(--ink-3);font-weight:400}
+.badge{font-family:var(--display);font-size:10.5px;font-weight:700;border-radius:5px;padding:3px 6px;background:var(--surface-2);color:var(--ink-2);flex-shrink:0}
+.badge.T{background:var(--brick-soft);color:var(--brick)}
+.badge.I{background:var(--slate-soft);color:var(--slate)}
+.badge.M,.badge.R{background:var(--lime-soft);color:#4f6b28}
+:root[data-theme="dark"] .badge.M,:root[data-theme="dark"] .badge.R{color:var(--lime-bright)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .badge.M,:root:not([data-theme="light"]) .badge.R{color:var(--lime-bright)}}
+.dnum{font-family:var(--display);font-size:24px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.dnum small{font-size:11px;font-weight:500;letter-spacing:0}
+.day p{font-size:11.8px;line-height:1.72;color:var(--ink-2);flex:1}
+.day p b{color:var(--ink)}
+.tick{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:9px;cursor:pointer}
+.tick input{accent-color:var(--lime);width:15px;height:15px;margin:0;flex-shrink:0}
+.today{font-family:var(--display);font-size:9.5px;font-weight:700;letter-spacing:.1em;color:var(--lime);text-transform:uppercase}
+.note{width:100%;border:1px solid var(--line);border-radius:7px;background:var(--bg);padding:6px 8px;font-size:11.5px;font-family:var(--data);resize:vertical;min-height:34px}
+.note::placeholder{color:var(--ink-3)}
+
+/* panels */
+.pnote{border-left:3px solid var(--lime);background:var(--surface-2);border-radius:0 8px 8px 0;padding:13px 16px;margin-top:16px;font-size:12.3px;line-height:1.8;color:var(--ink-2)}
+.pnote strong{color:var(--ink);font-family:var(--display)}
+.pnote.warn{border-left-color:var(--brick)}
+.two{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;margin-top:18px}
+.zrow{display:flex;align-items:center;gap:11px;padding:10px 0;border-bottom:1px solid var(--line)}
+.zrow:last-child{border-bottom:0}
+.zrow div{min-width:0}
+.zrow strong{font-size:12.5px;display:block}
+.zrow small{font-size:10.5px;color:var(--ink-3);display:block}
+.znum{margin-left:auto;text-align:right;white-space:nowrap}
+.znum b{font-family:var(--data);font-size:12.5px;font-weight:600;display:block}
+.znum small{font-size:10px;color:var(--ink-3)}
+select.wsel{width:100%;background:var(--bg);border:1px solid var(--line-2);border-radius:8px;padding:10px;margin-top:8px}
+.wres{margin-top:16px;background:var(--surface-2);border-radius:9px;padding:18px}
+.wres h3{margin-bottom:5px}
+.wres p{font-size:12.3px;color:var(--ink-2);line-height:1.8}
+.fine{font-size:11px;color:var(--ink-3);line-height:1.75;margin-top:13px}
+
+/* data tab */
+.sect{margin-bottom:30px}
+.sect>h2{margin-bottom:5px}
+.lead{color:var(--ink-2);margin:8px 0 18px;max-width:62ch}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:16px 0}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.tile em{font-style:normal;font-size:11px;color:var(--ink-3);display:block}
+.tile b{font-family:var(--display);font-size:28px;font-weight:700;letter-spacing:-.03em;display:block;margin:3px 0}
+.tile span{font-size:11.5px;color:var(--ink-2);display:block;line-height:1.6}
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;margin:14px 0}
+table{width:100%;border-collapse:collapse;font-size:12.3px}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--surface-2);font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--data);font-variant-numeric:tabular-nums}
+.ok{color:#4f7a2c;font-weight:600}
+:root[data-theme="dark"] .ok{color:var(--lime-bright)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .ok{color:var(--lime-bright)}}
+.guide h3{margin:24px 0 8px;padding-bottom:9px;border-bottom:1px solid var(--line)}
+.guide p{font-size:13.2px;color:var(--ink-2);line-height:1.85;margin:9px 0}
+.guide ul{margin:9px 0;padding-left:19px;font-size:13.2px;color:var(--ink-2);line-height:1.85}
+.guide li{margin:5px 0}
+.guide b{color:var(--ink)}
+
+/* closing */
+.close{text-align:center;padding:52px 8px 40px}
+.close p{font-family:var(--display);font-size:21px;font-weight:600;line-height:1.7;color:var(--ink-2);margin:12px 0}
+.close strong{color:var(--ink)}
+.close small{font-size:11px;color:var(--ink-3)}
+footer{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-block:20px 28px;border-top:1px solid var(--line);font-size:11px;color:var(--ink-3)}
+footer a{color:var(--ink-2)}
+.sync{font-size:10.5px;color:var(--ink-3);margin-left:auto}
+
+@media (max-width:980px){
+  .hero{grid-template-columns:1fr;gap:24px;padding-block:28px 22px}
+  .days{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .two{grid-template-columns:1fr}
+  .metrics{grid-template-columns:repeat(2,1fr)}
+  .metric{padding:14px 16px}
+  .metric:nth-child(2){border-right:0}
+  .metric:nth-child(3){padding-left:0}
+}
+@media (max-width:600px){
+  body{font-size:14.5px}
+  .days{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .day.long,.day.key{grid-column:1/-1}
+  .chart{gap:4px;min-height:120px}
+  .bar u{font-size:9.5px}
+  .bar var{font-size:9px}
+  nav.tabs{gap:20px}
+  .card{padding:16px}
+  .dist{letter-spacing:-.05em}
+  th,td{padding:8px 10px}
+}
+@media (display-mode:standalone){header{padding-top:env(safe-area-inset-top,0px)}footer{padding-bottom:calc(28px + env(safe-area-inset-bottom,0px))}}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<header><div class="wrap hrow">
+  <a class="brand" href="#top"><span class="mark">↗</span>RUN<span>/ tomak</span></a>
+  <div class="htag">
+    <button class="theme-btn" id="theme" type="button">切換深淺</button>
+  </div>
+</div></header>
+
+<main id="top" class="wrap">
+
+<section class="hero">
+  <div>
+    <div class="eyebrow" style="margin-bottom:14px">2026.10.19 — 2027.01.10 · 12 週</div>
+    <h1>把 4:15 練成<br><span class="hl">本能</span>，再去跑。</h1>
+    <p>渣打臺北公益馬拉松破 3 計畫。M 配速 4:15-4:20、心率上限 158，輕鬆日看時間與心率，決策點放在數據說話的那幾天。</p>
+    <div class="chips"><i>週一全休＋重訓</i><i>週二／週五 Q 課</i><i>週日長跑</i><i>峰值 90km</i></div>
+  </div>
+  <div class="racecard">
+    <div class="oval" aria-hidden="true"><i></i><i></i></div>
+    <div class="eyebrow" style="color:rgba(233,240,228,.6)">THE FINISH LINE</div>
+    <div class="dist">42<em>.195</em></div>
+    <div class="rbot">
+      <span>2027 / 01 / 10<small>臺北 · 05:00 起跑 · 凱達格蘭大道</small></span>
+      <div class="cd"><b id="cd">—</b><small id="cdl">天後出發</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="metrics" aria-label="計畫摘要">
+  <div class="metric"><small>目標</small><b>SUB-3</b><span>2:59:30 · 4:15.9/km</span></div>
+  <div class="metric"><small>M 配速</small><b class="mono" id="mWeek">—</b><span id="mWeekSub">心率上限 158</span></div>
+  <div class="metric"><small>峰值週量</small><b>90<i> km</i></b><span>W7 與 W9 · 現況 58km</span></div>
+  <div class="metric"><small>全馬 PB</small><b class="mono">3:08:05</b><span>2024 台北馬 · VDOT 50.8</span></div>
+</section>
+
+<nav class="tabs" aria-label="內容分頁">
+  <button type="button" data-tab="plan" aria-current="page">訓練課表</button>
+  <button type="button" data-tab="data">數據與驗證</button>
+  <button type="button" data-tab="guide">執行指南</button>
+</nav>
+
+<!-- ============ 課表 ============ -->
+<div id="tab-plan">
+  <section class="card">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap">
+      <div><div class="eyebrow">THE ARC</div><h2>先累積，再輕盈上場</h2></div>
+      <span class="fine" style="margin:0">點柱狀圖切換週次</span>
+    </div>
+    <div class="chart" id="chart" role="group" aria-label="每週計畫跑量"></div>
+    <div class="cfoot"><span class="eyebrow">BUILD · W1-W9</span><span class="eyebrow">TAPER · W10-W12</span></div>
+    <p class="fine">柱高為該週跑步總量，含熱身與緩和。W12 不含 42.195km 賽事本身。</p>
+  </section>
+
+  <div class="whead">
+    <div><div class="eyebrow" id="wrange">—</div><h2 id="wphase">—</h2></div>
+    <div class="wtools">
+      <span class="fine" style="margin:0;text-align:right" id="wmeta">—</span>
+      <b class="mono" id="wkm">—</b>
+      <button type="button" id="prev" aria-label="上一週">←</button>
+      <button type="button" id="next" aria-label="下一週">→</button>
+    </div>
+  </div>
+
+  <div class="mstrip" id="mstrip" aria-label="M 配速量的時長進程"></div>
+  <p class="fine" style="margin-top:-6px;margin-bottom:16px">
+    <b style="color:var(--brick)">M 配速 4:15-4:20，心率上限 158。</b>
+    心率超過 158 就放慢到守得住的配速 —— 心率是控制項，配速是結果。
+    10/23 實測：新鮮狀態 2×3km @4:14，心率 156-158，兩組之間零衰退。
+    同配速在 14°C 的比賽日約落在心率 149-151（2024 比賽平均 150）。
+    <b style="color:var(--ink)">所以進程不在配速，在上面那條「單堂 M 量」。</b>
+    短反覆現在就能跑 4:15；連續 10km 以上先用 4:18-4:20，讓心率上限把配速調到對的地方。
+  </p>
+
+  <div class="days" id="days"></div>
+  <div id="wnote"></div>
+
+  <div class="two">
+    <div class="card">
+      <div class="eyebrow">EFFORT FIRST</div><h2>強度設定</h2>
+      <div id="zones" style="margin-top:14px"></div>
+      <p class="fine">HRR = 178 − 43 = 135，Karvonen。這是起始參考，不是乳酸閾值檢測。心率、呼吸、體感一起判斷。</p>
+    </div>
+    <div class="card">
+      <div class="eyebrow">ADAPT TO THE DAY</div><h2>天氣調整</h2>
+      <label class="fine" for="wx" style="display:block;margin-top:14px">選擇當天環境</label>
+      <select class="wsel" id="wx"></select>
+      <div class="wres" aria-live="polite"><h3 id="wxt">—</h3><p id="wxp">—</p></div>
+      <p class="fine">M 與長跑用全幅調整，T 間歇只用一半，I／R 不調 —— 溫度表是從三小時持續強度推的，套到十分鐘的間歇會把劑量壓太低。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 數據 ============ -->
+<div id="tab-data" hidden>
+  <section class="sect">
+    <div class="eyebrow">WHERE THE TIME COMES FROM</div>
+    <h2>缺口 8.5 分，四個來源</h2>
+    <p class="lead">2024 的配速正負差只有 9 秒，是教科書級的平均分配 —— 所以 3:08 裡面沒有「配速沒配好」的免費空間。時間要從別的地方拿。</p>
+    <div class="tiles">
+      <div class="tile"><em>衰退預算</em><b class="mono" style="color:var(--brick)">10 秒/km</b><span>末段 7km 掉 10 秒/km 就吃掉全部餘裕</span></div>
+      <div class="tile"><em>補給</em><b class="mono">45→78</b><span>g/hr。2024 只補回消耗的 25%</span></div>
+      <div class="tile"><em>體重</em><b class="mono">65→62.5</b><span>kg。W1-W6 完成，之後零赤字</span></div>
+      <div class="tile"><em>訓練</em><b class="mono">+1~2</b><span>VDOT。58→90km，M 配速 158km</span></div>
+    </div>
+    <div class="pnote"><strong>四項合計 8.5-14.4 分，缺口 8.5 分。</strong>悲觀端剛好打平，樂觀端有 6 分餘裕 —— 這個帳的特徵是需要每一項都兌現，沒有哪一項可以放掉。破 3 機率約 50%。</div>
+  </section>
+
+  <section class="sect">
+    <h2>衰退預算</h2>
+    <p class="lead">目標 2:59:30，均速 4:15.3/km。前段跑多快，決定末段能掉多少。</p>
+    <div class="tscroll"><table>
+      <thead><tr><th>前 35km 配速</th><th>剩餘預算</th><th>末 7.195km 需要</th><th>可容許衰退</th></tr></thead>
+      <tbody>
+        <tr><td class="n">4:12</td><td class="n">32.5 分</td><td class="n">4:31</td><td class="n ok">+19 秒/km</td></tr>
+        <tr><td class="n">4:14</td><td class="n">31.3 分</td><td class="n">4:21</td><td class="n">+7 秒/km</td></tr>
+        <tr><td class="n"><b>4:15</b></td><td class="n">30.8 分</td><td class="n">4:16</td><td class="n" style="color:var(--brick)">+1 秒/km</td></tr>
+        <tr><td class="n">4:17</td><td class="n">29.6 分</td><td class="n">4:06</td><td class="n" style="color:var(--brick)">−10 秒/km</td></tr>
+      </tbody>
+    </table></div>
+    <div class="pnote warn"><strong>2024 年實際發生的事：</strong>35km 之後從 4:23 掉到 4:33，衰退 10 秒/km。把同樣幅度套到 4:15 的計畫上 ——
+      35km @4:15（148.8 分）＋ 末 7.2km @4:25（31.8 分）＝ <b class="mono">3:00:31</b>，比目標慢 62 秒。
+      整個 sub-3 的餘裕差不多就等於末段 7km 衰退 10 秒/km。</div>
+  </section>
+
+  <section class="sect">
+    <h2>脫鉤：有氧耐久性沒問題</h2>
+    <div class="tscroll"><table>
+      <thead><tr><th>課次</th><th>時間</th><th>脫鉤</th><th>判讀</th></tr></thead>
+      <tbody>
+        <tr><td>10/11 長跑 30km</td><td class="n">2h44</td><td class="n ok">+0.1%</td><td>EF 全程 0.0226-0.0229，完全沒退。本身就是漸速跑：6:10→4:46</td></tr>
+        <tr><td>10/18 14km</td><td class="n">70 分</td><td class="n ok">+1.7%</td><td>心率 145-152 → 4:50/km</td></tr>
+        <tr><td>2024 台北馬</td><td class="n">3h09</td><td class="n ok">+4.0%</td><td>末 20%：心率最高 153.9、EF 最低 0.0239（比開頭低 7%）</td></tr>
+      </tbody>
+    </table></div>
+    <div class="pnote"><strong>2h44 的長跑 EF 一點都沒掉。</strong>所以 35km 的衰退不是耐力結構問題 —— 末段心率最高、輸出最低，那是肝醣加肌肉損傷的指紋。補給從 45 拉到 78 g/hr 直接打這個，仍然是全期最大槓桿。</div>
+  </section>
+
+  <section class="sect">
+    <h2>比賽日巔峰驗證</h2>
+    <p class="lead">Banister CTL／ATL／TSB 模型，用課表實際寫的課逐段算 TSS。</p>
+    <div class="tiles">
+      <div class="tile"><em>CTL 保留</em><b class="mono ok">86%</b><span>45.8 ／ 峰值 53.3 · 目標 ≥85%</span></div>
+      <div class="tile"><em>TSB</em><b class="mono ok">+16.4</b><span>目標 +10 ~ +30</span></div>
+      <div class="tile"><em>Garmin 負荷比</em><b class="mono ok">0.60</b><span>Peaking 窗 0.55-0.85</span></div>
+      <div class="tile"><em>減量</em><b class="mono ok">−43%</b><span>90→72→51→29 · Mujika 41-60%</span></div>
+    </div>
+    <div class="pnote warn"><strong>W3 到 W9 的 TSB 會一直在 −12 到 −18。</strong>那段你會持續覺得累，那是建設期的正常狀態，不是課表排錯。新鮮度要到 W11 才翻正。
+      <br><br>另外要講清楚：Banister 是粗模型，個體差異大。「三項指標在窗內」是一個可辯護的減量設計，<b>不是保證</b>。</div>
+  </section>
+
+  <section class="sect">
+    <h2>兩個已修正的判斷錯誤</h2>
+    <div class="pnote warn"><strong>一、VDOT 落差不存在。</strong>原本採信 Garmin 的 5K 預測 54.7，推論「速度有餘、耐力不足」。但 10/14 實測 16×400m @3:47/km（45 秒恢復，末兩趟心率 170-172 = 96-97% max）對應 VDOT 50-52，與全馬 3:08:05 推出的 50.8 一致。<b>他是各距離平衡的 VDOT 51 跑者</b>，需要整個系統 +2.7 點，不是縮小落差。Garmin 的短距離預測在此失真。</div>
+    <div class="pnote warn"><strong>二、@4:15 與「配速 4:15-4:20，心率上限 158 —— 超過就放慢」不可能同時成立。</strong>實測 4:15/km → 心率 166（91% HRR），那是 I 區。硬寫 4:15 的結果是把 158km 的「M 配速量」變成偽裝的閾值量：疲勞照收，專一性拿不到。已改成逐週遞進。</div>
+    <p class="fine">另：10/11 停錶 6.5 分、10/14 停錶 13.5 分 —— 活動均速不能當連續耐力的依據。</p>
+  </section>
+</div>
+
+<!-- ============ 指南 ============ -->
+<div id="tab-guide" hidden>
+  <section class="sect guide">
+    <div class="eyebrow">TRAIN / FUEL / RECOVER</div>
+    <h2>把每一堂課練進身體</h2>
+
+    <h3>輕鬆日 ＝ 時間 ＋ 心率</h3>
+    <p>不規定公里數。有氧適應的劑量單位是<b>時間</b>，不是距離 —— 60 分鐘跑 5:20 和 5:50，里程差 1.4km，刺激幾乎一樣。</p>
+    <ul>
+      <li><b>前 30 分鐘</b>守心率 130-142。這段是判斷今天狀況的依據。</li>
+      <li><b>30 分鐘後</b>允許漂到 148。心臟漂移是正常的，別為了壓心率一直減速。</li>
+      <li><b>配速地板 6:15/km</b>。連這個都壓不住 148 → 當天提早結束。這就是恢復不足的警報器，比看 HRV 直接。</li>
+    </ul>
+    <p>這個處方會自動調節：累的那天你自然跑慢，分鐘數照跑、里程自己縮，週負荷跟著降。公里制沒有這個機制，累的那天反而吃更多負荷。</p>
+
+    <h3>重訓</h3>
+    <p>深蹲 95kg 5×5（1RM 約 109，1.68 倍體重）、六角槓硬舉 110kg 5×5（1RM 約 126，1.94 倍）。兩項都在「認真做肌力的跑者」區間，工作重量是 1RM 的 87%，神經適應區，正確。</p>
+    <ul>
+      <li><b>W1-W5（基礎／強化一）</b>：背蹲舉 5×5 ＋ 六角槓硬舉 5×5，維持目前重量 ＋ 核心 ＋ 跳箱。週一傍晚做，跟週二晨跑間隔 12 小時以上。重量不加 —— 馬拉松週期裡追重量 PR，等於從跑步那邊偷恢復。</li>
+      <li><b>W6-W9（跑量 83-90km）</b>：單週一項 3×5，蹲／硬舉交替。砍組數也砍項目數，<b>重量不變</b>。</li>
+      <li><b>W10-W11（減量）</b>：只留六角槓硬舉 2×3，重量仍是 110kg —— 降重量會把神經適應丟掉。</li>
+      <li><b>W12</b>：跳箱／徒手，或直接跳過。</li>
+    </ul>
+    <p>要留一項就留硬舉：後鏈與髖伸展主導、脊椎壓力低、更接近跑步力學。這個肌力基礎不是破 3 的加分項，是讓 58→90km 這個加量變安全的底氣。</p>
+
+    <h3>補給</h3>
+    <p>2024 只吃 40-50 g/hr。三小時約消耗 500-540g 醣類、庫存 500-600g，你補回約 25% —— 那是 35km 崩掉的主因。腸胃耐受要練，不能比賽日才拉量。</p>
+    <ul>
+      <li><b>W1-W2</b>：50 g/hr　<b>W3-W5</b>：60 g/hr　<b>W6-W8</b>：70 g/hr　<b>W9 之後</b>：78-80 g/hr</li>
+      <li>所有超過 90 分鐘的課都照比賽規格吃。選<b>葡萄糖:果糖 2:1</b> 的配方 —— 純葡萄糖吸收上限約 60 g/hr，混合可到 90。</li>
+      <li>從開跑 20 分鐘起規律補，不要等渴了、累了才吃。運動飲料的碳水要算進總量。</li>
+      <li>每包的克數要自己確認，不要用包數推估。例：每包 25g、每 20 分一包 ＝ 75 g/hr。</li>
+    </ul>
+
+    <h3>體重</h3>
+    <p>目標 <b>62.5-63kg</b>，是區間不是定點。減 2.5kg ≈ 2-2.5 秒/km/kg ＝ 全馬 3.5-4.4 分鐘。</p>
+    <ul>
+      <li><b>W1-W6 完成</b>，350-400 g/週。<b>W7 之後零赤字</b> —— 90km 的兩個關鍵週不能帶著熱量赤字進去。少掉的 0.5kg 值約 0.7-1.2 分，一個被赤字拖壞的峰值週值更多。</li>
+      <li>赤字放在輕鬆日和週一全休。<b>Q 課與長跑前後照常補碳</b> —— 不要用少吃碳水製造赤字，那會直接吃掉課表品質。</li>
+      <li>賽週增加 1-1.5kg（肝醣填充帶的水分），那是你 35km 之後要燒的東西。</li>
+    </ul>
+    <p>體脂 15-18%，家用體脂計誤差 ±3-5% —— <b>別追這個數字</b>。62kg 從 15% 出發是 10.9%，45 歲加週跑 90km，不建議低於 12%。</p>
+    <p><b>用槓鈴當閘門</b>：深蹲 95kg 5×5 與硬舉 110kg 5×5 撐得住 ＝ 掉的是脂肪；開始做不完 ＝ 掉的是淨體重，當週立刻停赤字。這比任何體脂計都準，而且你每週都在產生這個數據。</p>
+    <p><b>三條硬停條件</b>（任一觸發就停赤字）：① 5×5 做不完　② 體重低於 62.0　③ 靜止心率連三天 ≥48 且體重在掉。</p>
+
+    <h3>碳板鞋輪替</h3>
+    <p>碳板只用在「要鞋子發揮作用」的課，其餘全部訓練鞋。六次出場、累計約 90km，遞增 10→15→20→32。</p>
+    <ul>
+      <li><b>W4</b> 週五 Q2（10km）· <b>W5</b> 週二 10K 實測（15km）· <b>W7</b> 週五 16km @M（20km）</li>
+      <li><b>W9</b> 週日長跑 32km 全程 · <b>W11</b> 週五 Q2（9km）· <b>W12</b> 週四 3km @M（5km）</li>
+    </ul>
+    <p>原因：碳板把負荷往小腿與阿基里斯移，45 歲 ＋ 12 週加量 57%，那是最可能出事的地方。輕鬆跑和 T 課都不穿 —— T 課練的是代謝刺激不需要回彈，輕鬆跑穿厚底會削弱小腿與足底的強化，而那正是你 35km 之後要用的東西。</p>
+
+    <h3>兩個檢查點</h3>
+    <p><b>W5 週二　10K 全力實測</b>（11/17）。平路、單趟、不要配速員。</p>
+    <ul>
+      <li><b>41:19</b> ＝ VDOT 50，低於現況，要查原因</li>
+      <li><b>40:37</b> ＝ VDOT 51，符合目前推估</li>
+      <li><b>39:57</b> ＝ VDOT 52，已有進步</li>
+      <li><b>39:19</b> ＝ VDOT 53，超前，可上調 M 配速</li>
+      <li><b>38:41</b> ＝ VDOT 54，天花板不是問題，W6 的 I 課改回 T</li>
+    </ul>
+    <p><b>W7 週五　16km @ 4:25</b>（12/4）。注意是當週的 M，不是 4:15。能用 150-158 的心率撐完 16km，代表遞進表在軌道上；撐不完就是 sub-3 要改備案（3:03-3:05，剩下幾週改練負分割）。</p>
+
+    <h3>比賽日</h3>
+    <p>2027/01/10（日）05:00 起跑，04:30 集合，凱達格蘭大道。你住台中，前一晚要住台北 —— W9 的演練起床時間要對應真正的比賽早晨，不是在家出門。</p>
+    <ul>
+      <li><b>配速</b>：前 5km 約 4:18-4:20（起跑壅塞不要急追），之後穩在 4:14-4:16。半程 1:29:45-1:30:00。</li>
+      <li><b>心率</b>：操作區 151-157。2024 你平均 150、終點 157。看心率不要看感覺。</li>
+      <li><b>補給</b>：78-80 g/hr，每 40 分一包膠 ＋ 每小時 500ml 運動飲料。第一包在 40 分，不是渴了才吃。</li>
+      <li><b>30-35km</b>：檢查步態、腸胃、呼吸，再決定是否維持。半程若明顯吃力，立刻採備案配速，不要等 35km 崩盤。</li>
+      <li><b>路線</b>：中山北路 → 堤頂大道 → 河濱公園 → 大直橋下折返 → 迎風河濱終點。基本平路，但有麥帥二橋、下健康匝道、上南湖橋牽引道，以及<b>最後的上麥帥一橋牽引道</b>。W10 的長跑末段要演練一次上橋引道。</li>
+      <li>以官方公里牌和累計時間判斷，不要只看 GPS —— 超跑距離會讓手錶的配速和實際完賽時間不同。</li>
+    </ul>
+
+    <h3>睡眠</h3>
+    <p>9/21-10/18 平均睡 6:20，身體需求 8:23，56 天只有 1 天達標。同期跑量創全年新高、HRV 從 50 掉到 41。訓練不會讓你變強，<b>訓練後的修復才會</b> —— 生長激素分泌、肌肉蛋白合成、肝醣再合成大多發生在深睡期。</p>
+    <p>一小時的睡眠，對 1/10 的成績大概比任何一堂 Q 課都有用。<b>但不要用「晨跑延後」去補</b> —— 渣打 05:00 起跑，你 04:00 出門等於正在 05:00 跑步，那是專一性資產。缺口要從提早就寢那一端補。</p>
+
+    <h3>回報與調整</h3>
+    <p>每堂課跑完在卡片上打勾，備註欄記下關鍵數字（心率、配速、感覺）。這些會存在雲端，我可以直接讀，不用你再打一次。</p>
+    <p>我追蹤的是一個數字：<b>心率 152-155 時的配速</b>。目前長跑裡 4:54、14km 課裡 4:47，目標 4:15。它往下掉的速度比任何預測模型都準。</p>
+  </section>
+</div>
+
+<section class="close">
+  <div class="eyebrow">CONSISTENCY OVER PERFECTION</div>
+  <p>不補課、不硬追配速。<br><strong>把恢復，也算進訓練。</strong></p>
+  <small>破 3 是挑戰目標。依後續實測與天氣校正，不保證完賽成績或比賽日狀態。</small>
+</section>
+
+<footer>
+  <span>RUN / tomak · 12 週破 3 計畫</span>
+  <a href="https://scbmarathon.com/race-category.html" target="_blank" rel="noreferrer">賽事官方資訊 ↗</a>
+  <span class="sync" id="sync">紀錄：本機</span>
+</footer>
+</main>
+
+<script>
+const RACE = "2027-01-10";
+const PACE = {"1":{"vdot":51,"M":"4:15-4:20","T":"4:11","I":"3:47","eLo":"5:17","eHi":"4:50","eSlow":"5:37"},"2":{"vdot":51,"M":"4:15-4:20","T":"4:11","I":"3:47","eLo":"5:17","eHi":"4:50","eSlow":"5:37"},"3":{"vdot":51.5,"M":"4:15-4:20","T":"4:09","I":"3:45","eLo":"5:14","eHi":"4:47","eSlow":"5:34"},"4":{"vdot":51.5,"M":"4:15-4:20","T":"4:09","I":"3:45","eLo":"5:14","eHi":"4:47","eSlow":"5:34"},"5":{"vdot":51.5,"M":"4:15-4:20","T":"4:09","I":"3:45","eLo":"5:14","eHi":"4:47","eSlow":"5:34"},"6":{"vdot":52,"M":"4:15-4:20","T":"4:07","I":"3:43","eLo":"5:12","eHi":"4:45","eSlow":"5:32"},"7":{"vdot":52.5,"M":"4:15-4:20","T":"4:05","I":"3:41","eLo":"5:10","eHi":"4:43","eSlow":"5:30"},"8":{"vdot":52.5,"M":"4:15-4:20","T":"4:05","I":"3:41","eLo":"5:10","eHi":"4:43","eSlow":"5:30"},"9":{"vdot":53,"M":"4:15-4:20","T":"4:03","I":"3:39","eLo":"5:08","eHi":"4:41","eSlow":"5:28"},"10":{"vdot":53,"M":"4:15-4:20","T":"4:03","I":"3:39","eLo":"5:08","eHi":"4:41","eSlow":"5:28"},"11":{"vdot":53.5,"M":"4:15-4:20","T":"4:01","I":"3:38","eLo":"5:06","eHi":"4:39","eSlow":"5:26"},"12":{"vdot":53.5,"M":"4:15-4:20","T":"4:01","I":"3:38","eLo":"5:06","eHi":"4:39","eSlow":"5:26"}};
+
+const W = [
+ {km:63,easy:45,phase:"基礎期 · 接住加量",start:"2026-10-19",fuel:50,str:"p1",
+  q1:{b:"T",t:"T 入門（輕）",km:9,x:"熱身 2km；<b>2×10 分 T @%T%</b> 休 3 分；緩和 2km。本週刻意輕 —— 唯一的工作是讓身體接住接下來 8 週的加量"},
+  q2:{b:"M",t:"M 起步（拆開）",km:10,x:"熱身 2km；<b>2×3km @%M%</b> 休 3 分慢跑；緩和 2km。10/23 實測你跑 4:14、心率 157，這個配速現在就做得到。配速 4:15-4:20，心率上限 158 —— 超過就放慢"},
+  lg:{km:19,x:"全程 E %eLo%-%eHi%，心率 130-142（30 分後可漂到 148）；<b>最後 2km 轉 @%M%</b>。補給從本週就開始練：50 g/hr"},
+  note:["W1 是恢復週，不是起跑","跑量 63km，只比目前的 58km 多 10%。Q 課的強度照表做滿，要輕的是「總量」不是「強度」。這週唯一的工作：把身體準備好接受接下來 8 週的加量。"]},
+ {km:68,easy:45,phase:"基礎期 · 天花板",start:"2026-10-26",fuel:50,str:"p1",
+  q1:{b:"I",t:"I 天花板",km:11,x:"熱身 2km；<b>5×1000m I @%I%</b> 休 3 分慢跑；緩和 2km。心率要進 169-178。休夠才有效 —— 休不夠後段配速會垮，那就變成無效的 T 課"},
+  q2:{b:"M",t:"M 專項（拆開）",km:12,x:"熱身 2km；<b>2×4km @%M%</b> 休 3 分慢跑；收尾 4×200m；緩和 1km。配速 4:15-4:20，心率上限 158 —— 超過就放慢"},
+  lg:{km:20,x:"E %eLo%-%eHi%，心率 130-142；<b>末 4km @%M%</b>"}},
+ {km:74,easy:45,phase:"強化期一 · T 為主軸",start:"2026-11-02",fuel:60,str:"p2",
+  q1:{b:"T",t:"T 鞏固",km:11,x:"熱身 2km；<b>2×3km T @%T%</b> 休 2 分；緩和 3km"},
+  q2:{b:"M",t:"M 專項（拆開）",km:14,x:"熱身 2km；<b>2×5km @%M%</b> 休 3 分慢跑；緩和 2km。最後一次拆開 —— W5 起改連續。配速 4:15-4:20，心率上限 158 —— 超過就放慢"},
+  lg:{km:24,x:"📈 <b>漸速</b>：前 9km %eSlow%，中 10km %eHi%，<b>末 5km @%M%</b>。練的是肝醣一路往下掉時還能把配速推上去。出門前 1 小時吃 30-50g 碳水，跑程 60 g/hr"},
+  note:["漸速長跑比帳面硬","中段 %eHi% 是你現在的 M 心率配速（實測 152-159 → 4:47-4:54），模型把它算成輕鬆。這趟實際負荷約比週 TSS 高 7%。這是第一次測試，跑完記在備註。"]},
+ {km:65,easy:45,phase:"減量週 · 自我檢查",start:"2026-11-09",fuel:60,str:"p2",
+  q1:{b:"T",t:"減量 T",km:9,x:"熱身 2km；<b>2×10 分 T @%T%</b> 休 3 分；緩和 2km"},
+  q2:{b:"M",t:"M 專項（拆開）",km:11,x:"熱身 2km；<b>2×3.5km @%M%</b> 休 3 分慢跑；緩和 2km。👟 第一次穿比賽碳板鞋（本課共 10km）。配速 4:15-4:20，心率上限 158 —— 超過就放慢"},
+  lg:{km:20,x:"E %eLo%-%eHi%，<b>末 6km @%M%</b>。減量週也別浪費 M 額度 —— 量少但專項不減"},
+  note:["減量週檢查點","① 有沒有哪裡在痛（阿基里斯、足底、脛骨、膝外側）② Q 課有沒有因為跑不動而降速 ③ 晨起靜止心率連三天 ≥48（基線 42-44，+5 就是警訊）④ 5×5 做不完了嗎 —— 那是減太快。有痛點就停下來處理，不要等它自己好。"]},
+ {km:81,easy:50,phase:"強化期一 · 實測週",start:"2026-11-16",fuel:60,str:"p2",
+  q1:{b:"R",t:"🔬 10K 全力實測",km:15,x:"熱身 3km（含 4×100m 加速）；<b>10km 全力計時</b>，平路、單趟、不要配速員；緩和 2km。👟 穿比賽鞋（本課共 15km）。判讀見執行指南"},
+  q2:{b:"M",t:"M 專項（改連續）",km:13,x:"熱身 2km；<b>8km @%M% 連續</b>；緩和 3km。從這週起不拆了 —— 連續才練得到「撐住」。測驗後第 3 天，本週高強度已用在測驗上"},
+  lg:{km:25,x:"E %eLo%-%eHi%，<b>末 4km @%M%</b>"},
+  note:["這是全期最重要的量測","因為溫度的關係，你現在所有訓練數據都沒辦法跟 2024 年比較 —— 這會是第一個乾淨的讀數。41:19=VDOT50／40:37=51／39:57=52／39:19=53／38:41=54。"]},
+ {km:83,easy:55,phase:"強化期二 · T＋M 混合",start:"2026-11-23",fuel:70,str:"p3",
+  q1:{b:"I",t:"I 天花板（最後一堂）",km:11,x:"熱身 2km；<b>6×1000m I @%I%</b> 休 3 分慢跑；緩和 3km。全期最後一堂 I 課 —— W7 之後全部轉 M 專項。若 W5 實測 ≤38:41，這堂改回 2×3km T"},
+  q2:{b:"M",t:"M 加長",km:15,x:"熱身 2km；<b>11km @%M%</b>；緩和 2km。配速 4:15-4:20，心率上限 158 —— 超過就放慢"},
+  lg:{km:26,x:"E %eLo%-%eHi%，<b>末 5km @%M%</b>。補給拉到 70 g/hr"}},
+ {km:90,easy:60,phase:"強化期二 · 決策點",start:"2026-11-30",fuel:70,str:"p3",
+  q1:{b:"T",t:"短 T（為週五讓路）",km:8,x:"熱身 2km；<b>4×1000m T @%T%</b> 休 2 分；緩和 2km。本週重頭戲在週五，週二只維持不消耗"},
+  q2:{b:"M",t:"🎯 16km @ M",km:20,x:"熱身 2km；<b>16km @%M%</b>；緩和 2km。👟 穿比賽碳板鞋（本課共 20km）。全期的決策點 —— 注意是當週的 M 不是 4:15。能用 150-158 的心率撐完，代表遞進表在軌道上"},
+  lg:{km:28,x:"📈 <b>漸速</b>：前 11km %eSlow%，中 12km %eHi%，<b>末 5km @%M%</b>。上限 2 小時 40 分，超時就停 —— 時間比距離重要"},
+  note:["決策點：撐不撐得完","撐完且心率守住 150-158 → 照原計畫衝 2:59。心率飄到 162 以上還撐不完 → 當場把目標改成 3:03-3:05，剩下 5 週改練負分割。這堂的隔天早上檢查阿基里斯和足底。"]},
+ {km:79,easy:55,phase:"減量週 · 衝峰值前",start:"2026-12-07",fuel:70,str:"p3",
+  q1:{b:"T",t:"減量 T",km:11,x:"熱身 2km；<b>2×12 分 T @%T%</b> 休 3 分；緩和 2km"},
+  q2:{b:"M",t:"M 維持",km:14,x:"熱身 2km；<b>10km @%M%</b>；緩和 2km。配速 4:15-4:20，心率上限 158 —— 超過就放慢"},
+  lg:{km:23,x:"E %eLo%-%eHi%，<b>末 5km @%M%</b>"},
+  note:["衝峰值前的最後檢查","① 有沒有任何痛點（下一週是 90km 峰值，帶傷進去會出事）② W7 的 16km 有沒有完成 ③ 靜止心率連三天 ≥48 ④ 體重是否已落在 62.5-63kg —— W7 之後就不該有赤字了。有痛點 → W9 峰值降到 70km、長跑縮到 26km、M 段縮到 12km。峰值少 15km 不會讓你破不了 3，受傷會。"]},
+ {km:90,easy:65,phase:"馬拉松專項 · 峰值週",start:"2026-12-14",fuel:80,str:"p4",
+  q1:{b:"T",t:"短 T（為週日讓路）",km:8,x:"熱身 2km；<b>4×1000m T @%T%</b> 休 2 分；緩和 2km。峰值週只做一堂大課，週二跟週五都為週日讓路"},
+  q2:{b:"R",t:"純輕鬆",km:13,x:"13km（約 70 分）@%eLo%-%eHi% 純輕鬆，心率 130-142。<b>這不是偷懶</b> —— 峰值週同時做兩堂重課，恢復會打架"},
+  lg:{km:32,x:"🏔 👟 <b>全程穿比賽碳板鞋。</b>前 12km E %eLo%-%eHi%，<b>末 20km 全部 @%M%</b> —— 87 分鐘在比賽配速，全期唯一一次能知道「疲勞狀態下 %M% 能撐多久」。用比賽日的起床時間、吃比賽日要吃的早餐、等同樣時間再出門、全套比賽裝備。約 2 小時 27 分"},
+  note:["全期最重要的一堂","你住台中、比賽在台北 04:30 集合，所以演練的起床時間要對應真正的比賽早晨（前一晚住台北），不是在家出門。補給照 78-80 g/hr 全套跑一次。"]},
+ {km:72,easy:43,phase:"減量期 · 保留強度",start:"2026-12-21",fuel:80,str:"taper",
+  q1:{b:"T",t:"敏銳",km:9,x:"熱身 2km；<b>5×1000m T @%T%</b> 休 2 分；緩和 2km —— 趟數減、配速不減"},
+  q2:{b:"M",t:"M 維持 ＋ 目標驗證",km:14,x:"熱身 2km；<b>10km @%M%，最後 3km 收到 4:15</b>；4×100m 加速；緩和 2km。那 3km 是目標配速驗證 —— 收得進去且心率 ≤162，代表 4:15 已經在射程內"},
+  lg:{km:25,x:"📈 <b>漸速 ＋ 🌉 橋演練</b>：前 10km %eSlow%，中 9km %eHi%，<b>末 6km @%M%</b>，而且末段找一段上橋引道跑（麥帥一橋牽引道在比賽 40km 之後，這是唯一一次演練）。減量期把長跑砍到 20km 以下是最常見的錯誤"}},
+ {km:51,easy:26,phase:"減量期 · 配速一秒不讓",start:"2026-12-28",fuel:80,str:"taper",
+  q1:{b:"T",t:"短而銳",km:8,x:"熱身 2km；<b>4×1000m T @%T%</b> 休 2 分；緩和 2km"},
+  q2:{b:"M",t:"M 記憶",km:9,x:"熱身 2km；<b>6km @%M%</b>；4×100m 加速；緩和 1km。👟 穿比賽鞋（本課共 9km）"},
+  lg:{km:19,x:"E %eLo%-%eHi%，<b>末 4km @%M%</b>。約 98 分 —— 賽前兩週的長跑該落在 90-100 分"},
+  note:["量減 43%，配速一秒不讓","減量期的工作是把疲勞放掉、把強度留住。重訓砍組數不砍重量：只留六角槓硬舉 2×3，重量仍是 110kg。"]},
+];
+
+const RACEWEEK = {km:29,phase:"比賽週 · 去把 2:59 拿下來",start:"2027-01-04",fuel:80,str:"race",
+ days:[
+  ["一","全休","全休。補給與裝備定案，之後不再試新東西。開始增加碳水","",0],
+  ["二","4×1000m T","熱身 2km；<b>4×1000m T @4:01</b> 休 2 分；緩和 2km","T",8],
+  ["三","E 35 分","E 35 分 @5:06-4:39 ＋ 4×100m 加速，心率 130-142","",7],
+  ["四","3km @4:15","熱身 1km；<b>3km @4:15</b>；緩和 1km —— 配速記憶，距賽 3 天。👟 穿比賽鞋（共 5km）","M",5],
+  ["五","E 20 分","E 20 分很輕鬆；領物；早睡。碳水裝載 10-12 g/kg","",4],
+  ["六","休息","休息，或 20 分鐘很慢的慢跑。裝備全部擺好。前一晚住台北","",3],
+  ["日","🏁 比賽","<b>05:00 起跑</b>，04:30 集合，凱達格蘭大道。前 5km 4:18-4:20，之後穩在 4:14-4:16。半程 1:29:45-1:30:00。心率操作區 151-157。補給 78-80 g/hr，第一包在 40 分","R",42.195],
+ ]};
+
+const STR = {
+ p1:"背蹲舉 5×5 ＋ 六角槓硬舉 5×5（95 / 110kg，維持重量）＋ 核心 ＋ 跳箱。傍晚做，跟週二晨跑間隔 12 小時以上",
+ p2:"背蹲舉 5×5 ＋ 六角槓硬舉 5×5。重量不加 —— 馬拉松週期裡追重量 PR，等於從跑步那邊偷恢復",
+ p3:"單週一項 3×5（蹲／硬舉交替）。跑量到 83-90km，砍組數也砍項目數，重量不變",
+ p4:"單週一項 3×5。45 歲的肌腱剛性是 35km 之後的本錢，不能停",
+ taper:"六角槓硬舉 2×3。只留硬舉，重量仍是 110kg —— 降重量會把神經適應丟掉",
+ race:"跳箱／徒手，或直接跳過",
+};
+const ZONES = [
+ ["E","輕鬆跑","130-142","看時間","不看配速、不看距離"],
+ ["M","馬拉松專項","上限 158","4:15-4:20","心率是控制項，配速是結果"],
+ ["T","閾值","%T2%","%T%","RPE 6-7，組間慢跑 2 分"],
+ ["I","間歇","169-178","%I%","休 3 分，休夠才有效"],
+ ["R","加速跑","不看心率","6×15-20 秒","W1-W6 上坡，W7 後平路"],
+];
+const WX = [
+ ["≤16°C，風小","可用參考配速","熱身後再判斷強度。冬季同心率跑快是正常現象，不因此提高 E 的心率上限。"],
+ ["17-20°C","M／長跑 +7 秒","T 間歇只加 3-4 秒，I／R 不調 —— 溫度表是從三小時持續強度推的，套到十分鐘的間歇會把劑量壓太低。"],
+ ["21-24°C","M／長跑 +13 秒","T 間歇 +6 秒。濕度 >75% 再各加 6 秒。改清晨或陰影路線。"],
+ ["25-28°C 或濕熱","M／長跑 +22 秒","T 間歇 +11 秒。M／T 段的量減 20-30%，長跑改用時間控制不湊距離。"],
+ ["≥29°C 或日照強","取消戶外品質段","改短 E 或通風良好的室內。不硬湊里程，也不補課。"],
+];
+
+/* ---------- 工具 ---------- */
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]));
+const fill = (s, p) => String(s).replace(/%(\w+)%/g, (_, k) => k === "T2" ? "157-164" : (p[k] ?? ""));
+const tpe = d => new Intl.DateTimeFormat("sv-SE", {timeZone:"Asia/Taipei"}).format(d);
+const TODAY = tpe(new Date());
+function dayDate(start, i){ const d = new Date(start + "T12:00:00+08:00"); d.setTime(d.getTime() + i*86400000); return tpe(d); }
+const md = s => s.slice(5).replace("-","/");
+
+/* 倒數 */
+(function(){
+  const n = Math.max(0, Math.ceil((Date.parse(RACE+"T00:00:00+08:00") - Date.parse(TODAY+"T00:00:00+08:00"))/86400000));
+  $("#cd").textContent = n;
+  $("#cdl").textContent = TODAY > RACE ? "賽事已結束" : (n === 0 ? "就是今天" : "天後出發");
+})();
+
+/* 主題 */
+(function(){
+  let t = null;
+  try { t = localStorage.getItem("tomak-theme"); } catch(e){}
+  if (t) document.documentElement.setAttribute("data-theme", t);
+  $("#theme").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme");
+    const isDark = cur ? cur === "dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+    const nx = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", nx);
+    try { localStorage.setItem("tomak-theme", nx); } catch(e){}
+  });
+})();
+
+/* 分頁 */
+document.querySelectorAll("nav.tabs button").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("nav.tabs button").forEach(x => x.removeAttribute("aria-current"));
+  b.setAttribute("aria-current","page");
+  ["plan","data","guide"].forEach(k => { $("#tab-"+k).hidden = (k !== b.dataset.tab); });
+}));
+
+/* 天氣 */
+$("#wx").innerHTML = WX.map((w,i) => '<option value="'+i+'">'+esc(w[0])+'</option>').join("");
+function wxRender(){ const w = WX[+$("#wx").value]; $("#wxt").textContent = w[1]; $("#wxp").textContent = w[2]; }
+$("#wx").addEventListener("change", wxRender); wxRender();
+
+/* ---------- 紀錄 ---------- */
+let LOG = {};           // date -> {done, note}
+let DB = null;
+const LS = "tomak-log-v1";
+function lsRead(){ try { return JSON.parse(localStorage.getItem(LS) || "{}") || {}; } catch(e){ return {}; } }
+function lsWrite(){ try { localStorage.setItem(LS, JSON.stringify(LOG)); } catch(e){} }
+LOG = lsRead();
+
+async function saveDay(date, patch){
+  LOG[date] = Object.assign({}, LOG[date], patch);
+  lsWrite();
+  if (DB) {
+    try { await DB.collection("log").doc(date).set(Object.assign({date}, LOG[date])); }
+    catch(e){ $("#sync").textContent = "紀錄：雲端寫入失敗，已存本機"; }
+  }
+}
+
+(async function initDB(){
+  try {
+    const db = await window.claude?.use?.("db");
+    if (!db) { $("#sync").textContent = "紀錄：本機（此裝置）"; return; }
+    DB = db;
+    $("#sync").textContent = "紀錄：雲端同步";
+    db.collection("log").onSnapshot(snap => {
+      const next = {};
+      (snap.docs || snap || []).forEach(d => {
+        const v = (typeof d.data === "function" ? d.data() : d) || {};
+        const id = d.id || v.date;
+        if (id) next[id] = {done: !!v.done, note: v.note || ""};
+      });
+      LOG = Object.assign({}, LOG, next);
+      lsWrite();
+      render();
+    });
+  } catch(e){ $("#sync").textContent = "紀錄：本機（此裝置）"; }
+})();
+
+/* ---------- 渲染 ---------- */
+let sel = (function(){
+  for (let i = 0; i < W.length; i++) if (TODAY >= W[i].start && TODAY <= dayDate(W[i].start,6)) return i;
+  if (TODAY >= RACEWEEK.start) return 11;
+  return 0;
+})();
+const ALL = W.concat([RACEWEEK]);
+const PEAK = 90;
+
+function weekDays(i){
+  const w = ALL[i], p = PACE[i+1];
+  if (i === 11) return RACEWEEK.days.map((d,j) => ({
+    dow:d[0], date:dayDate(w.start,j), title:d[1], x:d[2], badge:d[3],
+    val: d[4] ? (j===6 ? "42.195" : d[4]+"") : "", unit: d[4] ? "km" : "", rest: !d[4], race: j===6 }));
+  const em = w.easy;
+  return [
+    {dow:"一", date:dayDate(w.start,0), title:"全休 ＋ 重訓", x:"跑步全休。傍晚重訓：<b>"+esc(STR[w.str])+"</b>", badge:"", val:"", unit:"", rest:true},
+    {dow:"二", date:dayDate(w.start,1), title:w.q1.t, x:fill(w.q1.x,p), badge:w.q1.b, val:w.q1.km+"", unit:"km", key:true},
+    {dow:"三", date:dayDate(w.start,2), title:"輕鬆跑", x:"<b>"+em+" 分鐘</b>，心率 130-142。不看配速、不看距離，跑滿分鐘數就好。騎車另外自行安排，不計入課表", badge:"E", val:em+"", unit:"分"},
+    {dow:"四", date:dayDate(w.start,3), title:"輕鬆跑 ＋ "+(i<=5?"上坡":"平路")+"加速跑", x:"<b>"+em+" 分鐘</b>，心率 130-142；最後加 "+(i<=5?"<b>6×15-20 秒上坡加速</b>，走下來恢復 —— 低衝擊徵召高閾值肌纖維，改善經濟性":"<b>6×100m 平路加速</b> —— 接近比賽改回平路求專一性")+"。加速跑不算進心率帶", badge:"E", val:em+"", unit:"分"},
+    {dow:"五", date:dayDate(w.start,4), title:w.q2.t, x:fill(w.q2.x,p), badge:w.q2.b, val:w.q2.km+"", unit:"km", key:true},
+    {dow:"六", date:dayDate(w.start,5), title:"輕鬆跑", x:"<b>"+em+" 分鐘</b>，心率 130-142；長跑前保留體力，這天跑快會吃掉明天", badge:"E", val:em+"", unit:"分"},
+    {dow:"日", date:dayDate(w.start,6), title:"長跑", x:fill(w.lg.x,p), badge:"R", val:w.lg.km+"", unit:"km", long:true},
+  ];
+}
+
+function render(){
+  const w = ALL[sel], p = PACE[sel+1];
+
+  $("#mWeek").textContent = "4:15-4:20";
+  $("#mWeekSub").textContent = "心率上限 158 · 本週單堂 M "+[6,8,10,7,8,11,16,10,20,10,6,3][sel]+"km";
+
+  $("#chart").innerHTML = ALL.map((x,i) =>
+    '<button class="bar'+(i>=9?" taper":"")+'" type="button" aria-pressed="'+(i===sel)+'" '+
+    'aria-label="W'+(i+1)+' '+x.km+' 公里" data-i="'+i+'">'+
+    '<u>'+x.km+'</u><s style="height:'+Math.round(x.km/PEAK*96+4)+'px"></s>'+
+    '<var>'+(i===11?"賽":"W"+(i+1))+'</var></button>').join("");
+  $("#chart").querySelectorAll(".bar").forEach(b =>
+    b.addEventListener("click", () => { sel = +b.dataset.i; render(); }));
+
+  $("#wrange").textContent = "W"+(sel+1)+" · "+md(w.start)+" — "+md(dayDate(w.start,6));
+  $("#wphase").textContent = w.phase;
+  $("#wkm").textContent = w.km + " km";
+  $("#wmeta").innerHTML = "VDOT "+p.vdot+" · M "+p.M+" · T "+p.T+"<br>輕鬆日 "+(sel===11?"賽週":w.easy+" 分×3")+" · 補給 "+w.fuel+" g/hr";
+  $("#prev").disabled = sel === 0;
+  $("#next").disabled = sel === ALL.length-1;
+
+  const MKM = [6,8,10,7,8,11,16,10,20,10,6,3];
+  $("#mstrip").innerHTML = ALL.map((_,i) =>
+    '<div'+(i===sel?' data-on="1"':'')+'><em>'+(i===11?"賽":"W"+(i+1))+'</em><b>'+MKM[i]+'km</b></div>').join("");
+
+  const ds = weekDays(sel);
+  $("#days").innerHTML = ds.map(d => {
+    const done = LOG[d.date]?.done;
+    const note = LOG[d.date]?.note || "";
+    return '<article class="day'+(d.rest?" rest":"")+(d.key?" key":"")+(d.long||d.race?" long":"")+(done?" done":"")+'">'+
+      '<div class="dtop"><span>週'+d.dow+'<small>'+md(d.date)+'</small></span>'+
+      (d.badge?'<span class="badge '+d.badge+'">'+d.badge+'</span>':'')+'</div>'+
+      (d.val?'<div class="dnum">'+d.val+'<small> '+d.unit+'</small></div>':'')+
+      '<h3 style="font-size:12.5px">'+esc(d.title)+'</h3>'+
+      '<p>'+d.x+'</p>'+
+      (d.date===TODAY?'<span class="today">今天</span>':'')+
+      (d.rest?'':'<label class="tick"><input type="checkbox" id="t-'+d.date+'" data-d="'+d.date+'"'+(done?" checked":"")+'>'+(done?"已完成":"標記完成")+'</label>'+
+        '<textarea class="note" id="n-'+d.date+'" data-d="'+d.date+'" placeholder="心率／配速／感覺">'+esc(note)+'</textarea>')+
+      '</article>';
+  }).join("");
+
+  $("#days").querySelectorAll('input[type=checkbox]').forEach(c =>
+    c.addEventListener("change", () => saveDay(c.dataset.d, {done: c.checked}).then(render)));
+  $("#days").querySelectorAll("textarea").forEach(t =>
+    t.addEventListener("change", () => saveDay(t.dataset.d, {note: t.value})));
+
+  $("#wnote").innerHTML = w.note
+    ? '<div class="pnote'+(sel===3||sel===6||sel===7?" warn":"")+'"><strong>'+esc(w.note[0])+'</strong><br>'+fill(w.note[1],p)+'</div>'
+    : "";
+
+  $("#zones").innerHTML = ZONES.map(z =>
+    '<div class="zrow"><span class="badge '+z[0]+'">'+z[0]+'</span>'+
+    '<div><strong>'+esc(z[1])+'</strong><small>'+esc(fill(z[4],p))+'</small></div>'+
+    '<div class="znum"><b>'+esc(fill(z[3],p))+'</b><small>'+esc(fill(z[2],p))+(/\d/.test(fill(z[2],p))?" bpm":"")+'</small></div></div>').join("");
+}
+$("#prev").addEventListener("click", () => { if (sel > 0) { sel--; render(); } });
+$("#next").addEventListener("click", () => { if (sel < ALL.length-1) { sel++; render(); } });
+render();
+</script>
+
+</body>
 </html>
