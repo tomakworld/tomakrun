@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#eceff3">
+<meta name="description" content="Challenge Taiwan 226 · 25 週單車課表">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="CT226">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307796f'/%3E%3Ccircle cx='20' cy='42' r='10' fill='none' stroke='%23fff' stroke-width='3.5'/%3E%3Ccircle cx='46' cy='42' r='10' fill='none' stroke='%23fff' stroke-width='3.5'/%3E%3Cpath d='M20 42 L30 24 L40 42 M30 24 L44 24 M46 42 L38 26' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2307796f'/%3E%3Ccircle cx='20' cy='42' r='10' fill='none' stroke='%23fff' stroke-width='3.5'/%3E%3Ccircle cx='46' cy='42' r='10' fill='none' stroke='%23fff' stroke-width='3.5'/%3E%3Cpath d='M20 42 L30 24 L40 42 M30 24 L44 24 M46 42 L38 26' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>CT226 單車課表</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&family=JetBrains+Mono:wght@500;700&display=swap">
+<style>
+/* 版面：行動優先的訓練工作面。功率區間配色當功能色 —— 一眼看出今天踩哪一區 */
+:root{
+  --bg:#eceff3; --surface:#fbfcfd; --surface-2:#e2e7ed; --sunken:#d8dee6;
+  --ink:#171d26; --ink-2:#515d6d; --ink-3:#7d8899;
+  --line:#d3dae2; --line-2:#bcc6d2;
+  --z1:#8e9aa8; --z1-bg:#e4e8ed;
+  --z2:#2f6f9e; --z2-bg:#dbe9f3;
+  --race:#07796f; --race-bg:#d2ecea;
+  --ss:#9a6410; --ss-bg:#f6e8cf;
+  --thr:#a93d22; --thr-bg:#f7e0d8;
+  --test:#5b3fa6; --test-bg:#e8e2f6;
+  --display:'Barlow Condensed',system-ui,'Noto Sans TC',sans-serif;
+  --body:'Barlow',system-ui,-apple-system,'Noto Sans TC',sans-serif;
+  --data:'JetBrains Mono',ui-monospace,SFMono-Regular,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12161c; --surface:#1a2029; --surface-2:#222a35; --sunken:#0d1116;
+  --ink:#e6ebf1; --ink-2:#9ba7b6; --ink-3:#74808f;
+  --line:#2a333f; --line-2:#3a4550;
+  --z1:#8e9aa8; --z1-bg:#242b34;
+  --z2:#6fb0dd; --z2-bg:#15293a;
+  --race:#3fc4b4; --race-bg:#0d2f2c;
+  --ss:#e0a94a; --ss-bg:#33270f;
+  --thr:#e8805f; --thr-bg:#35190f;
+  --test:#b49df0; --test-bg:#231b3a;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --bg:#12161c; --surface:#1a2029; --surface-2:#222a35; --sunken:#0d1116;
+  --ink:#e6ebf1; --ink-2:#9ba7b6; --ink-3:#74808f;
+  --line:#2a333f; --line-2:#3a4550;
+  --z1:#8e9aa8; --z1-bg:#242b34;
+  --z2:#6fb0dd; --z2-bg:#15293a;
+  --race:#3fc4b4; --race-bg:#0d2f2c;
+  --ss:#e0a94a; --ss-bg:#33270f;
+  --thr:#e8805f; --thr-bg:#35190f;
+  --test:#b49df0; --test-bg:#231b3a;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.6;-webkit-text-size-adjust:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--sunken)}
+.wrap{max-width:860px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3,p{margin:0}
+h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,7vw,42px);line-height:1.05;letter-spacing:.01em;text-wrap:balance}
+h2{font-family:var(--display);font-weight:700;font-size:clamp(19px,4vw,24px);line-height:1.15;text-wrap:balance}
+h3{font-family:var(--display);font-weight:600;font-size:16px;line-height:1.2}
+.mono{font-family:var(--data);font-variant-numeric:tabular-nums}
+.eyebrow{font-family:var(--display);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3)}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;background:none;border:0;padding:0}
+:focus-visible{outline:2.5px solid var(--race);outline-offset:2px;border-radius:3px}
+
+/* top */
+.top{background:var(--sunken);color:#e6ebf1}
+.top .wrap{padding-block:14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.logo{font-family:var(--display);font-weight:700;font-size:18px;letter-spacing:.04em}
+.logo b{color:var(--race);font-weight:700}
+.cdown{margin-left:auto;display:flex;align-items:baseline;gap:6px}
+.cdown b{font-family:var(--data);font-weight:700;font-size:22px;color:#f0c674}
+.cdown span{font-size:11px;color:#9ba7b6}
+.theme{border:1px solid #3a4550;border-radius:16px;padding:3px 10px;font-size:11px;color:#9ba7b6}
+
+/* hero */
+.hero{padding-block:26px 20px}
+.hero p{color:var(--ink-2);margin-top:12px;max-width:54ch}
+.goal{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;margin-top:18px}
+.goal div{background:var(--surface);padding:12px 13px;min-width:0}
+.goal em{font-style:normal;font-size:10.5px;color:var(--ink-3);letter-spacing:.07em;text-transform:uppercase;font-family:var(--display);font-weight:600}
+.goal b{display:block;font-family:var(--data);font-weight:700;font-size:20px;margin-top:3px;letter-spacing:-.02em}
+.goal i{font-style:normal;display:block;font-size:11.5px;color:var(--ink-2);margin-top:1px}
+
+/* tabs */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin-top:22px}
+.tabs button{font-family:var(--display);font-weight:600;font-size:15px;padding:9px 12px;color:var(--ink-3);border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button[aria-current]{color:var(--ink);border-bottom-color:var(--race)}
+
+/* week strip */
+.strip{display:flex;gap:5px;overflow-x:auto;padding:14px 0 10px;scrollbar-width:thin}
+.strip button{flex:0 0 auto;border:1px solid var(--line-2);border-radius:8px;padding:5px 9px;background:var(--surface);min-width:50px;text-align:center}
+.strip button u{display:block;text-decoration:none;font-family:var(--display);font-weight:600;font-size:12px;color:var(--ink-2)}
+.strip button s{display:block;text-decoration:none;font-family:var(--data);font-size:10.5px;color:var(--ink-3);margin-top:1px}
+.strip button[aria-pressed="true"]{background:var(--race);border-color:var(--race)}
+.strip button[aria-pressed="true"] u,.strip button[aria-pressed="true"] s{color:#fff}
+.strip button[data-key="1"]{border-color:var(--ss);border-width:2px}
+
+.whead{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:6px 0 14px}
+.whead .r{text-align:right}
+.whead .r b{font-family:var(--data);font-weight:700;font-size:17px;display:block}
+.whead .r span{font-size:11.5px;color:var(--ink-3)}
+.nav{display:flex;gap:6px}
+.nav button{border:1px solid var(--line-2);border-radius:50%;width:32px;height:32px;display:grid;place-items:center;color:var(--ink-2);background:var(--surface)}
+.nav button:disabled{opacity:.32;cursor:not-allowed}
+
+/* days */
+.days{display:flex;flex-direction:column;gap:8px}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 13px;display:flex;flex-direction:column;gap:8px}
+.day.off{background:transparent;border-style:dashed}
+.day.today{border-color:var(--race);box-shadow:inset 0 0 0 1px var(--race)}
+.dhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.dow{font-family:var(--display);font-weight:700;font-size:15px;min-width:26px}
+.ddate{font-family:var(--data);font-size:11px;color:var(--ink-3)}
+.pill{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.04em;border-radius:5px;padding:2px 7px;margin-left:auto}
+.p-z1{background:var(--z1-bg);color:var(--z1)}
+.p-z2{background:var(--z2-bg);color:var(--z2)}
+.p-race{background:var(--race-bg);color:var(--race)}
+.p-ss{background:var(--ss-bg);color:var(--ss)}
+.p-thr{background:var(--thr-bg);color:var(--thr)}
+.p-test{background:var(--test-bg);color:var(--test)}
+.dur{font-family:var(--data);font-weight:700;font-size:13px;color:var(--ink-2)}
+.day h3{font-size:15px}
+.day p{font-size:13.2px;line-height:1.65;color:var(--ink-2)}
+.day p b{color:var(--ink);font-weight:600}
+.w{font-family:var(--data);font-weight:700;font-size:12.5px;background:var(--surface-2);border-radius:4px;padding:1px 5px;white-space:nowrap}
+.tick{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2);border-top:1px solid var(--line);padding-top:8px;cursor:pointer}
+.tick input{accent-color:var(--race);width:16px;height:16px;margin:0;flex-shrink:0}
+.note{width:100%;border:1px solid var(--line);border-radius:6px;background:var(--bg);padding:6px 8px;font-size:12.5px;font-family:var(--data);resize:vertical;min-height:32px}
+.todaytag{font-family:var(--display);font-weight:700;font-size:10px;letter-spacing:.12em;color:var(--race);text-transform:uppercase}
+
+/* panels */
+.pn{border-left:3px solid var(--race);background:var(--surface-2);border-radius:0 8px 8px 0;padding:11px 14px;margin-top:14px;font-size:12.8px;line-height:1.75;color:var(--ink-2)}
+.pn strong{color:var(--ink);font-family:var(--display);font-weight:700;font-size:14px}
+.pn.warn{border-left-color:var(--thr)}
+.pn.key{border-left-color:var(--ss)}
+
+/* tables */
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:9px;margin:14px 0;background:var(--surface)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 11px;border-bottom:1px solid var(--line);white-space:nowrap}
+th{background:var(--surface-2);font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--data);font-variant-numeric:tabular-nums}
+
+/* sections */
+.sec{padding-block:4px 22px}
+.sec h2{margin-bottom:6px}
+.lead{color:var(--ink-2);font-size:14px;max-width:60ch;margin-bottom:6px}
+.guide h3{margin:20px 0 6px;padding-bottom:7px;border-bottom:1px solid var(--line)}
+.guide p{font-size:13.8px;color:var(--ink-2);line-height:1.8;margin:8px 0;max-width:62ch}
+.guide ul{margin:8px 0;padding-left:18px;font-size:13.8px;color:var(--ink-2);line-height:1.8;max-width:62ch}
+.guide li{margin:4px 0}
+.guide b{color:var(--ink)}
+.fine{font-size:11.5px;color:var(--ink-3);line-height:1.7;margin-top:10px}
+footer{border-top:1px solid var(--line);padding-block:16px 26px;font-size:11.5px;color:var(--ink-3);display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+
+@media (min-width:620px){
+  .days{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+  .day.big{grid-column:1/-1}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<header class="top"><div class="wrap">
+  <span class="logo">CT<b>226</b> · 單車</span>
+  <button class="theme" id="theme" type="button">深淺</button>
+  <span class="cdown"><b id="cd">—</b><span id="cdl">天</span></span>
+</div></header>
+
+<main class="wrap">
+
+<section class="hero">
+  <div class="eyebrow">2026.11.02 — 2027.04.24 · 25 週</div>
+  <h1 style="margin-top:10px">同樣的速度，<br>換成撐得住的強度。</h1>
+  <p>Challenge Taiwan 226・台東。單車 180km、兩圈、爬升約 1,546m，沿東海岸折返。這張課表只排單車，主軸是把 FTP 推上去。</p>
+  <div class="goal">
+    <div><em>上次 180km</em><b class="mono">6:41</b><i>98W · 後面跑得掉</i></div>
+    <div><em>課表用的 FTP</em><b class="mono" id="ftpv">120</b><i id="ftpsub">11/03 實測（偏低）· 11/11 重測</i></div>
+    <div><em>FTP 目標</em><b class="mono" style="color:var(--race)">162</b><i>3.11 W/kg · 比推估值 +14%</i></div>
+    <div><em>180km 目標</em><b class="mono" style="color:var(--race)">6:00</b><i>113W · 需完整空力</i></div>
+  </div>
+  <p class="fine" style="margin-top:10px">課表裡所有瓦數都用 <span class="mono" id="rp">120</span>W 換算。11/11 重測後只要改一個數字，全頁一起更新。</p>
+  <div class="pn warn"><strong>11/03 測出 FTP 120，但那個數字低估了。</strong>
+    她 180km 騎 98W、6:41，而且<b>後面的馬拉松跑得掉</b> —— 代表單車段是可持續強度（IF 0.65-0.72），反推 FTP 約 <b>136-151</b>。
+    用功率-時間關係交叉驗證：6.5 小時踩 98W 的人，20 分鐘應該踩得到 <b>150W</b>，實測 126W 低了 16%。
+    第一次做正式 20 分測試幾乎都會低估。<b>11/11（W2 週三）重測，那個數字才是基準。</b>
+    在那之前照 FTP 120 的瓦數練，一週而已，不會白費。</div>
+</section>
+
+<nav class="tabs" aria-label="分頁">
+  <button type="button" data-tab="plan" aria-current="page">課表</button>
+  <button type="button" data-tab="zone">強度區</button>
+  <button type="button" data-tab="guide">執行說明</button>
+</nav>
+
+<div id="tab-plan">
+  <div class="strip" id="strip" role="group" aria-label="選擇週次"></div>
+  <div class="whead">
+    <div><div class="eyebrow" id="wrange">—</div><h2 id="wphase">—</h2></div>
+    <div style="display:flex;align-items:flex-end;gap:10px">
+      <div class="r"><b class="mono" id="whrs">—</b><span id="wlong">—</span></div>
+      <div class="nav"><button type="button" id="prev" aria-label="上一週">←</button><button type="button" id="next" aria-label="下一週">→</button></div>
+    </div>
+  </div>
+  <div class="days" id="days"></div>
+  <div id="wnote"></div>
+</div>
+
+<div id="tab-zone" hidden>
+  <section class="sec">
+    <h2>強度區</h2>
+    <p class="lead">全部以 FTP <span class="mono" id="ftpz">120</span>W 計算（11/03 實測）。實測更新後，這張表和課表裡的瓦數會一起變。<b>心率區間等週三測完拿到 LTHR 再補。</b></p>
+    <div class="scroll"><table id="ztab">
+      <thead><tr><th>區</th><th>%FTP</th><th>瓦數</th><th>用在哪</th></tr></thead>
+      <tbody></tbody>
+    </table></div>
+    <div class="pn"><strong>比賽功率是這張課表的主角。</strong>它不是一個訓練區，是你要在比賽日撐 6.5 小時的功率。所有的長課都圍著它設計 —— 練的不是「能踩多高」，是「這個功率能撐多久」。</div>
+    <div class="pn warn"><strong>團練要壓住。</strong>週二和週六跟車友騎，守 Z2 不要追。那兩堂合計 3.5 小時，佔單車時數三到四成 —— 如果它們落在不上不下的灰色地帶，會同時吃掉恢復和週三的品質。這可能就是 FTP 卡住的原因。</div>
+  </section>
+</div>
+
+<div id="tab-guide" hidden>
+  <section class="sec guide">
+    <h2>執行說明</h2>
+
+    <h3>週結構</h3>
+    <p>一週只有<b>一個高強度日（週三）</b>和<b>一個長課日（週日）</b>。其餘都是 Z2。8-10 小時的預算下，這個比例是對的 —— 缺的不是刺激，是刺激之間真正的輕鬆。</p>
+    <ul>
+      <li><b>週一</b>　午休 1-1.25hr｜恢復。週日長課的隔天，不要練</li>
+      <li><b>週二</b>　團練 1.5hr｜<b>壓 Z2</b>，跟團但守功率</li>
+      <li><b>週三</b>　放工 1.5-2hr｜<b>唯一的品質課</b>。盡量選 2 小時那個時段</li>
+      <li><b>週四</b>　午休 1-1.25hr｜Z2 ＋ 技術（單腿、迴轉變化）</li>
+      <li><b>週五</b>　休</li>
+      <li><b>週六</b>　團練 2hr｜<b>壓 Z2</b>。任務是當明天的預疲勞</li>
+      <li><b>週日</b>　2-4.5hr｜<b>主菜</b></li>
+    </ul>
+
+    <h3>FTP 測試（W1 已做，之後 W4、W12、W20 重測）</h3>
+    <p><b>前一天只做 Z2</b>，測試前 48 小時不能有硬課。</p>
+    <ul>
+      <li>熱身 20 分，功率漸進</li>
+      <li>3×1 分高迴轉 100rpm，組間休 1 分</li>
+      <li>輕鬆轉 5 分</li>
+      <li><b>全力 5 分</b> ← 這段不能省，它把無氧頂端放掉，讓後面的 20 分反映有氧功率</li>
+      <li>輕鬆轉 10 分</li>
+      <li><b>計時 20 分</b> → FTP ＝ 平均 × 0.95</li>
+      <li>緩和 10-15 分</li>
+    </ul>
+    <p><b>20 分鐘的配速是最容易失敗的地方。</b>前 5 分刻意保守，比你覺得撐得住的再低一點；最後 2 分應該還有餘力能加。如果最後是用爬的，代表前面出太快，數字會偏低。</p>
+    <p>條件固定下來，四次要用同一套：同一台訓練台或同一段路、同樣時間、開風扇、吃飽、記錄溫度。<b>不要用 ramp test</b> —— 長距離型、無氧能力低的車手會被低估。</p>
+
+    <h3>功率還是心率</h3>
+    <p><b>功率是控制項，心率是護欄。</b>兩個都戴，但用途不同。</p>
+    <ul>
+      <li><b>團練（週二、週六）→ 看功率，嚴格。</b>心率有 30-60 秒延遲，等它顯示你追了那一下，已經追完了。守住瓦數上限才壓得住。</li>
+      <li><b>品質課（週三）→ 功率。</b>間歇太短，心率跟不上。</li>
+      <li><b>長課（週日）→ 用功率騎，但一定要戴心率帶。</b>心率在這裡的價值不是控制強度，是<b>算脫鉤</b>。</li>
+    </ul>
+    <p><b>脫鉤是這張課表的驗收指標。</b>它量的是「同樣功率，後半要多花多少心跳」—— 正好就是把 IF 從 0.67 推到 0.72 需要的能力。4 小時長課脫鉤 <b>&lt;5%</b>，代表那個功率撐得住，比賽功率可以往上調；<b>&gt;8%</b> 就是撐不住，不要調。沒戴心率帶就算不出這個數字。</p>
+    <p><b>心率什麼時候可以推翻功率：</b>同一個瓦數，心率比平常高 <b>8-10 下</b>。那是疲勞、睡不夠、脫水或太熱 —— 這時候把功率降下來，不要硬守數字。熱天尤其明顯。</p>
+    <p>週三的 FTP 測試會同時給兩個數字：<b>FTP</b>（20 分平均 × 0.95）和 <b>LTHR</b>（那 20 分的平均心率）。測完心率區間也會填進「強度區」那一頁。</p>
+
+    <h3>11/03 的 FTP 120 低估了</h3>
+    <p>她 180km 騎 98W、6:41，而且<b>後面的馬拉松跑得掉</b>。跑得掉就代表單車段是可持續強度 —— 226 的可持續區間是 IF 0.65-0.72。</p>
+    <div class="scroll"><table>
+      <thead><tr><th>若比賽 IF 是</th><th>反推 FTP</th><th>W/kg</th></tr></thead>
+      <tbody>
+        <tr><td class="n">0.65</td><td class="n">151W</td><td class="n">2.90</td></tr>
+        <tr><td class="n">0.68</td><td class="n">144W</td><td class="n">2.77</td></tr>
+        <tr><td class="n">0.70</td><td class="n">140W</td><td class="n">2.69</td></tr>
+        <tr><td class="n">0.72</td><td class="n">136W</td><td class="n">2.62</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>交叉驗證：</b>20 分功率約是 FTP 的 1.05 倍，6.5 小時可維持功率約是 FTP 的 0.685 倍 —— 兩者的比值是 <b>1.53</b>。她 6.5 小時踩 98W，20 分鐘應該踩得到 <b>150W</b>。實測 126W，低了 <b>16%</b>。</p>
+    <p>兩條獨立的推導都指向 <b>FTP 約 140-143</b>。第一次做正式 20 分測試幾乎都會低估 —— 配速不熟、不知道該多痛、不知道最後五分鐘還能撐。</p>
+
+    <h3>11/11 重測：這次要測到真實值</h3>
+    <p>流程跟上次一樣，但配速要改。<b>依比賽推算，20 分鐘應該踩得到約 150W。</b></p>
+    <ul>
+      <li><b>起步 135-140W</b>，不要更低。上次的問題大概是起步太保守，全程都在安全區</li>
+      <li><b>撐到第 10 分鐘再評估</b>。還有餘裕就加 5W</li>
+      <li><b>第 15 分鐘開始應該很痛</b>。如果到這裡還很舒服，代表踩太輕</li>
+      <li><b>最後 2 分鐘要還有東西能加</b>。如果是用爬的，代表出太快</li>
+    </ul>
+    <p>測完如果自己覺得沒測準，<b>下週再測一次</b>。整張課表的所有瓦數都建在這個數字上，值得多花一週測對。</p>
+
+    <h3>目標：180km 騎進 6 小時</h3>
+    <p>180km / 6:00 = 均速 <b>30.0 km/h</b>。以 FTP 推估 142 為起點：</p>
+    <div class="scroll"><table>
+      <thead><tr><th>25 週後 FTP</th><th>W/kg</th><th>IF 0.70</th><th>現況 CdA</th><th>完整空力</th><th>全上</th></tr></thead>
+      <tbody>
+        <tr><td class="n">142 不進步</td><td class="n">2.73</td><td class="n">99W</td><td class="n">6:38</td><td class="n">6:26</td><td class="n">6:18</td></tr>
+        <tr><td class="n">156 +10%</td><td class="n">3.00</td><td class="n">109W</td><td class="n">6:24</td><td class="n">6:12</td><td class="n">6:04</td></tr>
+        <tr><td class="n"><b>162 +14%</b></td><td class="n"><b>3.11</b></td><td class="n"><b>113W</b></td><td class="n">6:18</td><td class="n"><b>6:06</b></td><td class="n"><b>5:59</b></td></tr>
+      </tbody>
+    </table></div>
+    <p><b>FTP +14% ＋ 完整空力 = 6:00。</b>+14% 對一個「有大量有氧底、但從沒做過結構化訓練」的人是合理目標。</p>
+    <div class="pn warn"><strong>空力不是加分項，是必要條件。</strong>同樣的 FTP 162，現況姿勢是 <b>6:18</b>，全部做滿是 <b>5:59</b> —— 差 19 分鐘，而且不用付任何訓練代價。
+      順序：<b>① TT fitting（最大一塊，而且要早做，新姿勢需 8-12 週適應）② 計時安全帽 ③ 連身衣 ④ 輪組</b>（最貴、回報最小，最後考慮）。
+      fitting 要先，因為換姿勢之後安全帽和衣服的效果才算得準。</div>
+
+    <h3>五個區塊，為什麼這樣排</h3>
+    <div class="scroll"><table>
+      <thead><tr><th>區塊</th><th>週</th><th>週三練什麼</th><th>為什麼在這裡</th></tr></thead>
+      <tbody>
+        <tr><td>基礎</td><td class="n">W1-4</td><td>Sweet Spot 88-94%</td><td>先把肌肉和有氧底墊起來，才扛得住後面的閾值量</td></tr>
+        <tr><td>建構一</td><td class="n">W5-8</td><td>閾值 95-100%</td><td>推 FTP 的主力。長區塊（20-25 分）效果最好</td></tr>
+        <tr><td>建構二</td><td class="n">W9-12</td><td>VO2max 108-115%</td><td><b>把天花板抬高</b>。FTP 只能長到最大攝氧量允許的高度</td></tr>
+        <tr><td>建構三</td><td class="n">W13-16</td><td>閾值 98-105%</td><td>天花板抬高之後，再回來把 FTP 推到新的位置</td></tr>
+        <tr><td>專項</td><td class="n">W17-20</td><td>80-87% 長區塊</td><td>轉成比賽要的能力：中等強度維持多久不崩</td></tr>
+      </tbody>
+    </table></div>
+    <p><b>VO2max 那四週（W9-W12）是這版新加的。</b>2.31 W/kg 代表天花板還有很大空間 —— 先把它抬高，後面的閾值訓練才推得動。對已經接近天花板的人這樣排沒意義，但她不是。</p>
+    <p><b>W17 之後強度「降」到 80-87%，那不是變輕，是變專項。</b>30 分鐘踩 85%，比 20 分鐘踩 100% 更接近比賽要的能力。6.5 小時的比賽，限制因素不是最大攝氧量。</p>
+    <p>長課也跟著分期：基礎期末段加比賽功率，建構期中段改成 <b>76-82% 的 Tempo 區塊</b>（那也在推 FTP），專項期才整堂鎖在比賽功率。</p>
+
+    <h3>三堂全套模擬</h3>
+    <p>W18、W21、W22 的週日是 4.5 小時，<b>全套演練</b>：比賽車、比賽輪組、比賽服裝、完整補給、比賽日的起床與出發時間。</p>
+    <p>這是整期唯一能測出「第 4 小時腸胃還吃不吃得下、頸椎和坐骨撐不撐得住」的機會。4.5 小時是比賽單車段的 <b>67-73%</b> —— 加上前一天的團練 2 小時，週末區塊就等於比賽時長。</p>
+    <p>最後一堂是 <b>W22（4/4）</b>，距比賽 20 天。之後不再有大課。</p>
+
+    <h3>比賽日</h3>
+    <p>2027/4/24（六）台東。單車 180km 兩圈，爬升約 1,546m，沿東海岸到八王灣折返。補給站約每 20km。</p>
+    <ul>
+      <li><b>路線是折返</b> —— 風向影響很大，賽前一週看預報，去程順風不要爽過頭</li>
+      <li><b>台東濕熱、幾乎沒有遮蔽</b>，補水和電解質要比平常多</li>
+      <li><b>功率鎖住不要追</b>。單車段多省的瓦，是後面 42km 的本錢</li>
+    </ul>
+
+    <h3>紀錄</h3>
+    <p>每堂打勾、備註記關鍵數字（平均功率、NP、心率、感覺）。這些存在<b>這支手機的瀏覽器裡</b>，不會同步到別的裝置，也不會傳給教練 —— 清除瀏覽器資料就沒了。重要的數據還是靠 Garmin。</p>
+  </section>
+</div>
+
+<footer>
+  <span>CT226 單車課表 · 25 週</span>
+  <span class="mono" id="ftpfoot">FTP 146W（暫定）</span>
+</footer>
+</main>
+
+<script>
+const FTP = 120;   // 2026-11-03 實測：20 分 126W × 0.95 = 119.7。重測後只改這一個數字
+const RACE = "2027-04-24";
+const W1 = "2026-11-02";
+
+const w = (lo,hi) => hi ? `${Math.round(FTP*lo/100)}-${Math.round(FTP*hi/100)}W` : `${Math.round(FTP*lo/100)}W`;
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tpe = d => new Intl.DateTimeFormat("sv-SE",{timeZone:"Asia/Taipei"}).format(d);
+const TODAY = tpe(new Date());
+const dayOf = (start,i) => { const d=new Date(start+"T12:00:00+08:00"); d.setTime(d.getTime()+i*864e5); return tpe(d); };
+const md = s => s.slice(5).replace("-","/");
+// 把 {lo-hi} 換成「lo-hi% FTP（xxx-yyyW）」
+const fill = t => String(t)
+  .replace(/\{(\d+)-(\d+)\}/g,(_,a,b)=>`<b>${a}-${b}%</b> <span class="w">${w(+a,+b)}</span>`)
+  .replace(/\{(\d+)\}/g,(_,a)=>`<b>${a}%</b> <span class="w">${w(+a)}</span>`);
+
+const ZONES = [
+  ["Z1 恢復","50-65",[50,65],"週一。真的要慢","z1"],
+  ["Z2 耐力","65-75",[65,75],"週二、四、六，以及長課的底","z2"],
+  ["比賽功率","67-72",[67,72],"長課的主要區塊","race"],
+  ["Tempo","76-87",[76,87],"長課裡的加強段、專項期的品質課","ss"],
+  ["Sweet Spot","88-94",[88,94],"基礎期（W1-W4）的品質課","ss"],
+  ["閾值","95-105",[95,105],"建構一、三的品質課 ← 推 FTP 的主力","thr"],
+  ["VO2max","106-120",[106,120],"建構二（W9-W12）。把天花板抬高","thr"],
+];
+
+/* 週資料：q3 = 週三品質課，sun = 週日長課 */
+const WK = [
+ {p:"基礎",h:7.0,  q3:["測試後恢復","11/03 剛測完 FTP，今天只做 Z2 {65-75} ＋ 最後 2×8 分 @{85-88}","z2"], sun:[2.0,"全程 Z2 {65-72}；<b>末 20 分轉比賽功率 {67-72}</b>"],
+  note:["本週唯一的工作：約 fitting","11/03 測出 FTP 120，但那個數字低估了（見執行說明）。下週三 11/11 重測，那個才是基準。<br>這週不要再測、不要加練。<b>把 TT fitting 約起來</b> —— 它值 19 分鐘，而且新姿勢要 8-12 週適應，現在不約就來不及。"]},
+ {p:"基礎",h:7.5,  q3:["🔬 FTP 重測","同流程。<b>前一天只做 Z2</b>。配速指引見執行說明 —— 這次要測到真實值","test"], sun:[2.25,"Z2 {65-72}；末 20 分 @{67-72}"], test:1,
+  note:["這次要測到真實值","上次 126W 低了約 16%。依你的比賽推算，20 分鐘應該踩得到 <b>約 150W</b>。<br><b>起步用 135-140W</b>，撐 10 分鐘再評估；第 15 分鐘開始該很痛；最後 2 分鐘要還有東西能加。<br>如果最後是用爬的，代表出太快 —— 那就下週再測一次，不要將就。"]},
+ {p:"基礎",h:8.0,  q3:["SS 加量","3×12 分 @{90-94}，組間休 4 分","ss"], sun:[2.5,"Z2 {65-72}；末 25 分 @{67-72}"]},
+ {p:"基礎 · 減量",h:6.5, q3:["減量 SS","2×10 分 @{88-92}","ss"], sun:[2.0,"全程 Z2 {65-72}，不加區塊"],
+  note:["減量週檢查點","① 有沒有哪裡在痛（膝、下背、手腕、坐骨）② 團練有沒有真的壓住 Z2 ③ 晨起心率有沒有連三天偏高 ④ <b>fitting 約了沒</b> —— 這是整期最便宜的 19 分鐘"]},
+ {p:"建構一 · 閾值",h:8.5, q3:["閾值導入","2×20 分 @{95-100}，組間休 8 分","thr"], sun:[2.5,"Z2 {65-72}；<b>末 30 分 @{67-72}</b>"]},
+ {p:"建構一 · 閾值",h:9.0, q3:["閾值密度","3×15 分 @{95-100}，組間休 5 分","thr"], sun:[2.75,"Z2；<b>2×20 分 @{76-82}</b>，中間 10 分 Z2"]},
+ {p:"建構一 · 閾值",h:9.5, q3:["閾值加長","2×25 分 @{95-98}，組間休 8 分","thr"], sun:[3.0,"Z2；2×20 分 @{76-82}"]},
+ {p:"建構一 · 減量",h:7.0, q3:["減量閾值","2×12 分 @{95-100}","thr"], sun:[2.25,"全程 Z2 {65-72}"]},
+ {p:"建構二 · VO2",h:9.0, q3:["VO2 導入","熱身 20 分；<b>5×3 分 @{110-115}</b>，組間 3 分輕轉；緩和 15 分","thr"], sun:[3.0,"Z2；2×25 分 @{76-82}"],
+  note:["VO2max 區塊開始：把天花板抬高","FTP 只能長到最大攝氧量允許的高度。2.31 W/kg 代表天花板還有空間 —— 這四週就是去碰它。<br>這種課很痛但很短。<b>3 分鐘要踩得完整</b>，撐不到最後一組寧可少做一趟，不要整組拖慢。"]},
+ {p:"建構二 · VO2",h:9.5, q3:["VO2 加量","6×3 分 @{110-115}，組間 3 分","thr"], sun:[3.25,"Z2；3×20 分 @{76-82}"]},
+ {p:"建構二 · VO2",h:10.0,q3:["VO2 加長","5×4 分 @{108-113}，組間 4 分","thr"], sun:[3.5,"Z2；<b>2×30 分 @{72-78}</b>"]},
+ {p:"建構二 · 減量",h:7.5, q3:["🔬 FTP 重測","同流程。前一天只做 Z2","test"], sun:[2.5,"全程 Z2 {65-72}"], test:1,
+  note:["期中驗收","基礎 ＋ 閾值 ＋ VO2 共 11 週。這次的數字決定後半段：<br>到 135 以上 → 軌道上，建構三照表推。<br>125-134 → 有進步但慢，把建構三的閾值量加重。<br>仍是 120 → 回頭檢查團練有沒有真的壓 Z2，那是最可能的漏洞。"]},
+ {p:"建構三 · 閾值密度",h:9.5, q3:["閾值長區塊","4×8 分 @{100-105}，組間休 4 分","thr"], sun:[3.5,"Z2；<b>2×40 分 @{70-76}</b>"]},
+ {p:"建構三 · 閾值密度",h:10.0,q3:["閾值密度","3×12 分 @{98-102}，組間休 5 分","thr"], sun:[4.0,"Z2；<b>3×40 分 @{70-76}</b>。補給演練從這堂開始：每小時 60-70g 碳水"],
+  note:["第一堂 4 小時","補給從這週開始認真練。腸胃耐受要訓練，不能比賽日才拉量。記下吃了什麼、幾點吃、有沒有不適。"]},
+ {p:"建構三 · 閾值密度",h:10.0,q3:["閾值耐受","2×20 分 @{98-102}，組間休 8 分","thr"], sun:[3.5,"Z2；2×45 分 @{70-76}"]},
+ {p:"建構三 · 減量",h:7.5, q3:["減量閾值","3×8 分 @{98-102}","thr"], sun:[2.5,"全程 Z2 {65-72}"]},
+ {p:"專項",h:10.0, q3:["專項長區塊","2×30 分 @{80-85}，組間休 10 分","race"], sun:[4.0,"<b>一半以上的時間在比賽功率 {67-72}</b>，其餘 Z2"]},
+ {p:"專項",h:10.5, q3:["專項加強","2×25 分 @{82-87}，組間休 8 分","race"], sun:[4.5,"🔑 <b>全套模擬</b>：比賽車輪、比賽服、完整補給、比賽日起床與出發時間。主體在 {67-72}。<b>下車接 20 分 brick 跑</b>","key"],
+  note:["第一堂全套模擬","這是整期唯一能測出「第 4 小時腸胃和身體還撐不撐得住」的機會。裝備有任何不對，現在發現還有時間換。"]},
+ {p:"專項",h:10.0, q3:["專項密度","3×20 分 @{82-87}，組間休 6 分","race"], sun:[4.0,"比賽功率為主 {67-72}；下車接 15 分 brick"]},
+ {p:"專項 · 減量",h:7.5, q3:["🔬 FTP 重測","同流程。前一天只做 Z2 —— 最後一次測","test"], sun:[2.5,"全程 Z2 {65-72}"], test:1,
+  note:["最後一次重測：定比賽功率","這個數字 × 0.67-0.72 就是 4/24 當天要鎖的瓦數。測完之後不再調整，剩下的五週只做兩件事 —— 把疲勞放掉、把那個功率練熟。"]},
+ {p:"巔峰",h:10.5, q3:["專項長區塊","2×30 分 @{82-87}，組間休 10 分","race"], sun:[4.5,"🔑 全套模擬，主體 {67-72}。<b>下車接 25 分 brick</b>","key"]},
+ {p:"巔峰",h:10.5, q3:["專項綜合","90 分含 3×20 分 @{78-82}","race"], sun:[4.5,"🔑 <b>最後一堂大課</b>。全套模擬，主體 {67-72}。<b>下車接 30 分 brick</b>","key"],
+  note:["最後一堂大課，距比賽 20 天","之後不會再有這個長度的課。這堂做完，剩下三週的工作是把疲勞放掉、把強度留住。"]},
+ {p:"減量",h:7.5,  q3:["保持敏銳","2×15 分 @{95-100}，組間休 6 分 —— 時間減、強度不減","thr"], sun:[3.0,"比賽功率 {67-72}；下車接 20 分 brick"]},
+ {p:"減量",h:5.5,  q3:["短而銳","3×8 分 @{95-100}，組間休 4 分","thr"], sun:[2.0,"Z2；末 20 分 @{67-72}"],
+  note:["減量期：量砍，強度不砍","量降下來的時候最容易想「再加一堂」。不要。這三週的工作是讓前面 22 週的訓練長出來。"]},
+];
+
+/* 比賽週 */
+const RW = {p:"比賽週",h:3.5, days:[
+  ["一","全休","全休，或 30 分極輕轉 @{50-60}。裝備與補給定案，之後不試新東西","z1","30 分"],
+  ["二","開合","45 分含 3×3 分 @{72-78}，組間休 2 分。<b>團練不要跟，自己騎</b>","z2","45 分"],
+  ["三","最後刺激","50 分含 3×4 分 @{90-93}，組間休 3 分 —— 本週唯一的真刺激","ss","50 分"],
+  ["四","移動日","到台東。組車、試騎 30 分確認變速與煞車 @{50-60}","z1","30 分"],
+  ["五","賽前","檢錄託運。20 分含 3×1 分開合 @{75}。熟悉轉換區，早睡","z1","20 分"],
+  ["六","🏁 比賽","<b>單車 180km</b>　目標功率 <b>{67-72}</b>，兩圈、爬升約 1,546m。折返路線，注意風向。補給站約每 20km","race","180km"],
+  ["日","—","賽後","z1",""],
+]};
+
+const WEEK_T = [
+  ["一","恢復","午休。<b>真的要慢</b> @{50-65}，週日長課的隔天不要練","z1","1-1.25hr"],
+  ["二","團練 · 壓 Z2","跟車友騎但守功率 @{65-75}，不要追","z2","1.5hr"],
+  null,                                   // 週三 = 品質課，逐週不同
+  ["四","Z2 ＋ 技術","@{65-75}。加 3×5 分單腿（每腿）或迴轉變化 85/100/70rpm","z2","1-1.25hr"],
+  ["五","休","完全休息","z1",""],
+  ["六","團練 · 壓 Z2","@{65-72}。<b>這堂的任務是當明天的預疲勞</b>，不是自己練","z2","2hr"],
+  null,                                   // 週日 = 長課
+];
+
+/* ---------- 紀錄（只存本機） ---------- */
+const LS="ct226-log-v1";
+let LOG={};
+try{ LOG=JSON.parse(localStorage.getItem(LS)||"{}")||{}; }catch(e){ LOG={}; }
+const save=()=>{ try{ localStorage.setItem(LS,JSON.stringify(LOG)); }catch(e){} };
+
+/* ---------- 倒數 / 主題 ---------- */
+(function(){
+  const n=Math.max(0,Math.ceil((Date.parse(RACE+"T00:00:00+08:00")-Date.parse(TODAY+"T00:00:00+08:00"))/864e5));
+  $("#cd").textContent=n; $("#cdl").textContent = TODAY>RACE ? "賽後" : (n===0?"就是今天":"天後出發");
+})();
+(function(){
+  let t=null; try{ t=localStorage.getItem("ct226-theme"); }catch(e){}
+  if(t) document.documentElement.setAttribute("data-theme",t);
+  $("#theme").addEventListener("click",()=>{
+    const cur=document.documentElement.getAttribute("data-theme");
+    const dark = cur ? cur==="dark" : matchMedia("(prefers-color-scheme:dark)").matches;
+    const nx = dark?"light":"dark";
+    document.documentElement.setAttribute("data-theme",nx);
+    try{ localStorage.setItem("ct226-theme",nx); }catch(e){}
+  });
+})();
+
+/* ---------- 分頁 ---------- */
+document.querySelectorAll("nav.tabs button").forEach(b=>b.addEventListener("click",()=>{
+  document.querySelectorAll("nav.tabs button").forEach(x=>x.removeAttribute("aria-current"));
+  b.setAttribute("aria-current","page");
+  ["plan","zone","guide"].forEach(k=>{ $("#tab-"+k).hidden = (k!==b.dataset.tab); });
+}));
+
+/* ---------- 頭部數字 ---------- */
+$("#ftpv").textContent=FTP; $("#ftpz").textContent=FTP;
+$("#rp").textContent=FTP;
+$("#ftpfoot").textContent=`FTP ${FTP}W（暫定）`;
+$("#ztab tbody").innerHTML=ZONES.map(z=>
+  `<tr><td><span class="pill p-${z[4]}" style="margin:0">${esc(z[0])}</span></td>`+
+  `<td class="n">${z[1]}%</td><td class="n"><b>${w(z[2][0],z[2][1])}</b></td><td>${esc(z[3])}</td></tr>`).join("");
+
+/* ---------- 渲染 ---------- */
+const ALL = WK.concat([RW]);
+let sel = (function(){
+  for(let i=0;i<ALL.length;i++){ const s=dayOf(W1,i*7); if(TODAY>=s && TODAY<=dayOf(W1,i*7+6)) return i; }
+  return TODAY>RACE ? ALL.length-1 : 0;
+})();
+
+function dayList(i){
+  const wk=ALL[i], start=dayOf(W1,i*7);
+  if(wk.days) return wk.days.map((d,j)=>({dow:d[0],date:dayOf(start,j),title:d[1],x:d[2],zone:d[3],dur:d[4],big:j===5}));
+  return WEEK_T.map((t,j)=>{
+    if(j===2){ const q=wk.q3; return {dow:"三",date:dayOf(start,2),title:q[0],x:q[1],zone:q[2],dur:"1.5-2hr",big:true,key:true}; }
+    if(j===6){ const s=wk.sun; const h=Math.floor(s[0]), m=Math.round((s[0]%1)*60);
+      return {dow:"日",date:dayOf(start,6),title:"長課",x:s[1],zone:s[2]==="key"?"race":"race",dur:`${h}:${String(m).padStart(2,"0")}`,big:true,key:true}; }
+    return {dow:t[0],date:dayOf(start,j),title:t[1],x:t[2],zone:t[3],dur:t[4]};
+  });
+}
+const ZLABEL={z1:"Z1 恢復",z2:"Z2 耐力",race:"比賽功率",ss:"Sweet Spot",thr:"閾值",test:"測試"};
+
+function render(){
+  const wk=ALL[sel], start=dayOf(W1,sel*7);
+  $("#strip").innerHTML=ALL.map((x,i)=>
+    `<button type="button" aria-pressed="${i===sel}" data-i="${i}"${x.test?' data-key="1"':''}>`+
+    `<u>${i===ALL.length-1?"賽":"W"+(i+1)}</u><s>${md(dayOf(W1,i*7))}</s></button>`).join("");
+  $("#strip").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{sel=+b.dataset.i;render();}));
+  const act=$("#strip").querySelector('[aria-pressed="true"]');
+  if(act) act.scrollIntoView({block:"nearest",inline:"center"});
+
+  $("#wrange").textContent=`W${sel+1} · ${md(start)} — ${md(dayOf(start,6))}`;
+  $("#wphase").textContent=wk.p;
+  $("#whrs").textContent=wk.h.toFixed(1)+" hr";
+  $("#wlong").textContent = wk.days ? "比賽週" : `長課 ${Math.floor(wk.sun[0])}:${String(Math.round((wk.sun[0]%1)*60)).padStart(2,"0")}`;
+  $("#prev").disabled=sel===0; $("#next").disabled=sel===ALL.length-1;
+
+  $("#days").innerHTML=dayList(sel).map(d=>{
+    const done=LOG[d.date]&&LOG[d.date].done, note=(LOG[d.date]&&LOG[d.date].note)||"";
+    const off=!d.dur;
+    return `<article class="day${off?" off":""}${d.big?" big":""}${d.date===TODAY?" today":""}">`+
+      `<div class="dhead"><span class="dow">週${d.dow}</span><span class="ddate mono">${md(d.date)}</span>`+
+      (d.dur?`<span class="dur">${esc(d.dur)}</span>`:"")+
+      `<span class="pill p-${d.zone}">${ZLABEL[d.zone]||""}</span></div>`+
+      `<h3>${esc(d.title)}</h3><p>${fill(d.x)}</p>`+
+      (d.date===TODAY?'<span class="todaytag">今天</span>':"")+
+      (off?"":`<label class="tick"><input type="checkbox" data-d="${d.date}"${done?" checked":""}>${done?"已完成":"標記完成"}</label>`+
+        `<textarea class="note" data-d="${d.date}" placeholder="平均功率／NP／心率／感覺">${esc(note)}</textarea>`)+
+      `</article>`;
+  }).join("");
+
+  $("#days").querySelectorAll("input[type=checkbox]").forEach(c=>c.addEventListener("change",()=>{
+    LOG[c.dataset.d]=Object.assign({},LOG[c.dataset.d],{done:c.checked}); save(); render();
+  }));
+  $("#days").querySelectorAll("textarea").forEach(t=>t.addEventListener("change",()=>{
+    LOG[t.dataset.d]=Object.assign({},LOG[t.dataset.d],{note:t.value}); save();
+  }));
+
+  $("#wnote").innerHTML = wk.note
+    ? `<div class="pn${sel===8?" warn":(wk.note[0].indexOf("大課")>=0||wk.note[0].indexOf("模擬")>=0?" key":"")}"><strong>${esc(wk.note[0])}</strong><br>${wk.note[1]}</div>`
+    : "";
+}
+$("#prev").addEventListener("click",()=>{ if(sel>0){sel--;render();} });
+$("#next").addEventListener("click",()=>{ if(sel<ALL.length-1){sel++;render();} });
+render();
+</script>
+
+</body>
+</html>
